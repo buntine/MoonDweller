@@ -2,4 +2,4 @@
   (:require [moon-dweller.util :as u]))
 
 (defn messages []
-  (println "messages"))
+  (println "Messages"))
