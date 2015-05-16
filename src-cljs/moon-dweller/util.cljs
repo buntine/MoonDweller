@@ -22,3 +22,9 @@
     (doseq
       [l (map #(str " - " %) lines)]
       (md-pr l speed))))
+
+(defn direction? [verb] 
+  (boolean 
+    (some #{verb} 
+          '(n e s w ne se sw nw north east south west northeast
+            southeast southwest northwest in out up down))))
