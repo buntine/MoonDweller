@@ -8,6 +8,13 @@
                  [ring/ring-defaults "0.1.2"]]
   :plugins [[lein-ring "0.8.13"]
             [lein-cljsbuild "1.0.6"]]
+  :cljsbuild {
+    :builds [{
+      :source-paths ["src-cljs"]
+      :compiler {
+        :output-to "resources/public/js/main.js"
+        :optimizations :whitespace
+        :pretty-print true}}]}
   :ring {:handler moon-dweller.handler/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
