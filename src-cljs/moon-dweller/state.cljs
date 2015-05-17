@@ -69,3 +69,44 @@
 
 (defn hit-milestone? [m]
   (contains? milestones m))
+
+(defn add-milestone! [m]
+  "Adds the given milestone to the players list"
+  (set! milestones (conj milestones m)))
+
+(defn set-current-room! [room]
+    (set! current-room room))
+
+(defn objects-in-room ([] (objects-in-room current-room))
+  ([room]
+   (nth room-objects room)))
+
+(defn room-has-object?
+  "Returns true if the gien room currently houses the given object"
+  ([objnum] (room-has-object? current-room objnum))
+  ([room objnum]
+   (boolean (some #{objnum} (objects-in-room room)))))
+
+(defn in-inventory? [objnum]
+  "Returns true if object assigned to 'objnum' is in players inventory"
+  (boolean (some #{objnum} inventory)))
+
+(letfn
+  [(alter-room! [room changed]
+     "Physically alters the contents of the given. Must be called from within
+      a dosync form"
+     (set! room-objects 
+           (assoc-in room-objects [room] changed)))]
+
+  (defn take-object-from-room!
+    ([objnum] (take-object-from-room! current-room objnum))
+    ([room objnum]
+     (alter-room! room
+                  (vec (remove #(= objnum %)
+                                 (objects-in-room room))))))
+
+  (defn drop-object-in-room!
+    ([objnum] (drop-object-in-room! current-room objnum))
+    ([room objnum]
+     (alter-room! room
+                  (conj (objects-in-room room) objnum)))))
