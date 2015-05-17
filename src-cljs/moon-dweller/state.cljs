@@ -1,6 +1,10 @@
 (ns moon-dweller.state
   (:require [moon-dweller.util :as u]))
 
+(def total-weight 12)
+(def ignore-words '(that is the
+                    fucking fuckin
+                    damn)) 
 (def current-room 0)             ; Current room the player is in.
 (def visited-rooms [])           ; Rooms that the player has visited.
 (def inventory [])               ; Players inventory of items.
@@ -8,6 +12,9 @@
 (def milestones #{})             ; Players milestones. Used to track and manipulate story.
 (def game-options {:retro true   ; Print to stdout with tiny pauses between characters.
                    :sound true}) ; Play sound during gameplay.
+
+(defn text-speed []
+  (if (game-options :retro) 25 0))
 
 ; A vector containing the objects that each room contains when the game starts. Each index
 ; corresponds to the room as defined in 'rooms'.
@@ -127,7 +134,7 @@
   (set! visited-rooms (conj visited-rooms room)))
 
 (defn save-game! []
-  (u/md-pr "Not yet implemented!"))
+  (u/md-pr "Not yet implemented!" (text-speed)))
 
 (defn load-game! []
-  (u/md-pr "Not yet implemented!"))
+  (u/md-pr "Not yet implemented!" (text-speed)))

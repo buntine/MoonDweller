@@ -9,11 +9,9 @@
     (.play sound)))
 
 ; TODO: Implement
-(defn md-pr
-  ([text] (md-pr text 20))
-  ([text speed]
-    "Prints a string one character at a time with an interval of i milliseconds"
-    (println text)))
+(defn md-pr [text i]
+  "Prints a string one character at a time with an interval of i milliseconds"
+  (println text))
 
 (defn print-with-newlines
   ([lines speed] (print-with-newlines lines speed ""))
