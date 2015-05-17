@@ -19,9 +19,8 @@
     "Prints a sequence of strings, separated by newlines. Only useful for side-effects"
     (if (not (empty? prepend))
       (md-pr prepend speed))
-    (doseq
-      [l (map #(str " - " %) lines)]
-      (md-pr l speed))))
+    (dorun
+      (map #(md-pr (str " - " %) speed) lines))))
 
 (defn direction? [verb] 
   (boolean 

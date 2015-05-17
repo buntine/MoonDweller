@@ -195,9 +195,9 @@
   "Attempts to drink the given object. The event must return a boolean value, if
    false then the side-effect will not occur (removal of item from game)."
   (let [evt (event-for objnum :drink)
-        drink! #(if (@s/game-options :sound)
+        drink! #((if (@s/game-options :sound)
                   (u/play-sound "/sound/drink.wav"))
-                (s/remove-object-from-inventory! objnum)]
+                (s/remove-object-from-inventory! objnum))]
     (if (nil? evt)
       (say :path '(commands cannot-drink))
       (if (string? evt)
@@ -222,4 +222,4 @@
       (pull-evt))))
 
 (defn messages []
-  (println "Messages"))
+  (describe-room s/current-room))
