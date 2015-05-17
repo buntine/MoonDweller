@@ -195,7 +195,7 @@
   "Attempts to drink the given object. The event must return a boolean value, if
    false then the side-effect will not occur (removal of item from game)."
   (let [evt (event-for objnum :drink)
-        drink! #((if (@s/game-options :sound)
+        drink! #((if (s/game-options :sound)
                   (u/play-sound "/sound/drink.wav"))
                 (s/remove-object-from-inventory! objnum))]
     (if (nil? evt)
@@ -338,6 +338,123 @@
       (fn []
         (say :path '(take paper))
         true)})
+
+(defn make-dets [id details]
+  "A helper function to merge in some sane defaults for object details"
+  (letfn
+    [(text-path [basename]
+       (t/text 'objects id basename))]
+
+    (let [defaults {:weight 0, :edible false, :permanent false,
+                    :living false, :events {}, :credits nil,
+                    :game (text-path 'game), :inv (text-path 'inv),
+                    :inspect (text-path 'inspect)}]
+      (merge defaults details))))
+
+; The details of all objects. Each object is assigned one or more numbers in s/object-identifiers,
+; which corresponds to it's index here. Permanent object cannot be taken and thus don't require
+; weights or inventory descriptions. Events, such as :eat, :drink, :speak, :give, :take and :put
+; can be assigned and will be executed in the correct contexts.
+; TODO: Refector. Do not use indexes to identify objects.
+(def object-details
+  (vec (map
+    #(apply make-dets %)
+    (vector
+      ['candy-bar
+       {:weight 1
+        :events {:eat (eat-fn-for :eats-candy)}}]
+      ['small-bed
+       {:permanent true}]
+      ['large-lever
+       {:events {:pull (pull-fn-for :control-lever)}
+         :permanent true}]
+      ['porno-mag
+       {:weight 2}]
+      ['green-keycard
+       {:weight 1}]
+      ['red-keycard
+       {:weight 1}]
+      ['silver-keycard
+       {:weight 1}]
+      ['alien-boy 
+       {:permanent true
+        :events {:give {3 (give-fn-for :porno-to-boy)},
+                 :speak (t/text 'objects 'alien-boy 'speak)}
+        :living true}]
+      ['pod-manager
+       {:permanent true
+        :events {:speak (speech-fn-for :pod-manager)}
+        :living true}]
+      ['repairs-captain
+       {:permanent true
+        :events {:speak (speech-fn-for :repairs-captain)}
+        :living true}]
+      ['small-robot
+       {:permanent true
+        :events {:speak (t/text 'objects 'small-robot 'speak)}
+        :living true}]
+      ['homeless-bum 
+       {:events {:speak (speech-fn-for :homeless-bum)
+                 :give {16 (give-fn-for :whisky-to-bum)
+                        17 (give-fn-for :becherovka-to-bum)}}
+        :permanent true
+        :living true}]
+      ['red-potion
+       {:events {:drink (drink-fn-for :red-potion)}
+        :weight 1}]
+      ['green-potion
+       {:events {:drink (drink-fn-for :green-potion)}
+        :weight 1}]
+      ['brown-potion 
+       {:events {:drink (drink-fn-for :brown-potion)}
+        :weight 1}]
+      ['shop-att-a
+       {:permanent true
+        :events {:speak (t/text 'objects 'shop-att-a 'speak)}
+        :living true}]
+      ['salvika 
+       {:events {:drink (drink-fn-for :salvika-whisky)
+                 :take (take-fn-for :salvika-whisky)}
+        :weight 2}]
+      ['becherovka
+       {:events {:drink (drink-fn-for :becherovka)
+                 :take (take-fn-for :becherovka)}
+        :weight 2}]
+      ['five-credits
+       {:credits 5}]
+      ['small-knife
+       {:cutter true
+        :weight 2}]
+      ['spider-web
+       {:events {:cut (cut-fn-for :spider-web)}
+        :permanent true}]
+      ['fat-protester
+       {:permanent true
+        :living true
+        :events {:speak (t/text 'objects 'fat-protester 'speak)}}]
+      ['thin-protester
+       {:permanent true
+        :living true
+        :events {:speak (t/text 'objects 'thin-protester 'speak)}}]
+      ['gentle-old-man
+       {:permanent true
+        :living true
+        :events {:speak (t/text 'objects 'gentle-old-man 'speak)}}]
+      ['paper-a
+       {:weight 1
+        :events {:take (take-fn-for :paper)}}]
+      ['book-a
+       {:weight 2}]
+      ['medium-stone
+       {:weight 3}]
+      ['wet-floor
+       {:permanent true}]
+      ['staircase-a
+       {:permanent true}]))))
+  
+(def directions {'north 0 'east 1 'south 2 'west 3 'northeast 4
+                 'southeast 5 'southwest 6 'northwest 7 'up 8 'down 9
+                 'in 10 'out 11})
 
 (defn messages []
   (describe-room s/current-room))
