@@ -493,5 +493,42 @@
             new-room (or ((fnvec i)) room)]
         (s/set-current-room! new-room)))))
 
+; Map to specify which rooms the player will enter on the given movement.
+; A function indicates that something special needs to be done (check conditions, etc).
+(def world-map
+  (vector
+;    north     east      south     west      ntheast   stheast   sthwest   nthwest   up        down      in        out
+    [3         2         nil       nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;0
+    [4         nil       nil       2         nil       nil       nil       nil       nil       nil       nil       nil]   ;1
+    [nil       1         nil       0         nil       nil       nil       nil       nil       nil       nil       nil]   ;2
+    [nil       5         0         nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;3
+    [6         nil       1         7         nil       nil       nil       nil       nil       nil       nil       nil]   ;4
+    [nil       7         nil       3         nil       nil       nil       nil       nil       nil       nil       nil]   ;5
+    [(k 4 8)   nil       4         nil       nil       nil       nil       nil       nil       nil       (k 4 8)   nil]   ;6
+    [nil       4         nil       5         nil       nil       nil       nil       nil       nil       nil       nil]   ;7
+    [nil       nil       6         9         nil       nil       nil       11        nil       nil       nil       nil]   ;8
+    [nil       8         nil       10        nil       nil       nil       nil       nil       nil       nil       nil]   ;9
+    [nil       9         nil       nil       11        nil       nil       nil       nil       nil       nil       nil]   ;10
+    [nil       nil       nil       nil       nil       8         10        nil       nil       nil       nil       nil]   ;11
+    [nil       nil       14        nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;12
+    [nil       nil       nil       14        nil       nil       nil       nil       nil       nil       15        nil]   ;13
+    [12        13        18        nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;14
+    [nil       nil       nil       nil       nil       nil       nil       nil       nil       nil       nil       13]    ;15
+    [nil       nil       nil       18        nil       nil       nil       nil       nil       nil       17        nil]   ;16
+    [nil       nil       nil       nil       nil       nil       nil       nil       nil       nil       nil       16]    ;17
+    [14        16        nil       19        nil       nil       nil       nil       nil       nil       nil       nil]   ;18
+    [nil       18        nil       (o 20 20) nil       nil       nil       nil       nil       nil       nil       nil]   ;19
+    [21        19        nil       nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;20
+    [nil       nil       20        nil       nil       nil       nil       nil       nil       nil       23        nil]   ;21
+    [25        24        23        (rc 0 26) nil       nil       nil       nil       nil       nil       nil       nil]   ;22
+    [22        nil       nil       nil       nil       nil       nil       nil       nil       nil       nil       21]    ;23
+    [nil       nil       nil       22        nil       nil       nil       nil       nil       nil       nil       nil]   ;24
+    [27        28        22        29        nil       nil       nil       nil       nil       nil       nil       nil]   ;25
+    [nil       22        nil       nil       nil       nil       nil       nil       nil       (o 27 30) nil       nil]   ;26
+    [nil       nil       25        nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;27
+    [nil       nil       nil       25        nil       nil       nil       nil       nil       nil       nil       nil]   ;28
+    [nil       25        nil       nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;29
+    [nil       nil       nil       nil       nil       nil       nil       nil       26        nil       nil       nil])) ;30
+
 (defn messages []
   (describe-room s/current-room))
