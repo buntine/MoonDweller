@@ -456,5 +456,42 @@
                  'southeast 5 'southwest 6 'northwest 7 'up 8 'down 9
                  'in 10 'out 11})
 
+(defn k [keynum room]
+  "Returns a function that checks if the player has the given key. If they
+   do, set the current room to 'room'. Otherwise, let them know"
+  (fn []
+    (if (s/in-inventory? keynum)
+      (let [key-name (. ((object-details keynum) :inv) toLowerCase)]
+        (s/set-current-room! room)
+        (if (s/game-options :sound)
+          (u/play-sound "/sound/door.wav"))
+        (say :raw (str " * Door unlocked with " key-name " *")))
+      (do
+        (if (s/game-options :sound)
+          (u/play-sound "/sound/fail.wav"))
+        (say :raw "You don't have security clearance for this door!")))))
+
+(defn o [objnum room]
+  "Returns a function that checks if the given room houses the given object. If
+   it does, the player cannot go in the given direction."
+  (fn []
+    (if (s/room-has-object? objnum)
+      (say :raw "You can't go that way.")
+      (s/set-current-room! room))))
+
+(letfn
+  [(library-trapdoor []
+     (when (> (inventory-weight) 7)
+         (say :path '(secret trapdoor))
+         (s/take-object-from-room! 27)
+         (s/drop-object-in-room! 28)))]
+
+  (defn rc [i room]
+    "Returns a function that performs the 'room check' (a named function) identified by i. The function should either return a number indicating the room to move the player to, or a false value, in which case the player will be sent to 'room'"
+    (fn []
+      (let [fnvec [library-trapdoor]
+            new-room (or ((fnvec i)) room)]
+        (s/set-current-room! new-room)))))
+
 (defn messages []
   (describe-room s/current-room))
