@@ -4,7 +4,7 @@
             [moon-dweller.state :as s])
   (:use [clojure.string :only (join split)]))
 
-(declare messages object-details)
+(declare messages object-details kill-player)
 
 (defn say 
   "Prints s to the game screen. If given a vector of strings, a random one will be chosen."
@@ -102,9 +102,124 @@
          descs (t/rooms room)]
      (if visited?
        (say :raw ((if verbose? first second) descs))
-       (s/visit-room! room)
-       (say :raw (first descs)))
+       (do
+         (s/visit-room! room)
+         (say :raw (first descs))))
      (describe-objects-for-room room))))
+
+(defn take-object! [objnum]
+  "Attempts to take an object from the current room. If the object
+   has an event for :take, then it must return a boolean - if true,
+   the object will be taken"
+  (cond
+    (object-is? objnum :permanent)
+      (say :path '(commands cant-take))
+    (> (+ (inventory-weight) (obj-weight objnum)) s/total-weight)
+      (say :path '(commands no-space))
+    :else
+      (let [evt (event-for objnum :take)]
+        (if (or (nil? evt) (evt))
+          (let [c ((object-details objnum) :credits)]
+            ; If we are taking credits, just add them to the players wallet.
+            (if (integer? c)
+              (s/pay-the-man! c)
+              (s/add-object-to-inventory! objnum))
+            (s/take-object-from-room! objnum)
+            (say :path '(commands taken)))))))
+
+(defn drop-object! [objnum]
+  "Attempts to drop an object into the current room. If the object
+   has an event for :drop, then it must return a boolean - if true,
+   the object will be dropped"
+  (let [evt (event-for objnum :drop)]
+    (when (or (nil? evt) (evt))
+      (s/remove-object-from-inventory! objnum)
+      (s/drop-object-in-room! objnum)
+      (say :path '(commands dropped)))))
+
+(letfn
+  [(give-or-put [evt objx objy err-msg]
+     "Does give/put with objects x and y. E.g: give cheese to old man"
+     (let [events (event-for objy evt)]
+       (when (or (nil? events) (not (events objx)))
+         (say :raw err-msg)
+         ((events objx))
+         (s/remove-object-from-inventory! objx))))]
+
+  (defn give-object! [objx objy]
+    (give-or-put :give objx objy (t/text 'commands 'give-error)))
+
+  (defn put-object! [objx objy]
+    (give-or-put :put objx objy (t/text 'commands 'put-error))))
+
+(defn inspect-object [objnum]
+  "Inspects an object in the current room"
+  (say :raw (describe-object objnum :inspect)))
+
+(defn fuck-object
+  ([objnum]
+   "Attempts to fuck the given object"
+   (if (not (object-is? objnum :living))
+     (say :path '(commands fuck-object))
+     (do
+       (if (s/game-options :sound)
+         (u/play-sound "/sound/fuck.wav"))
+       (say :path '(commands fuck-living)))))
+  {:ridiculous true})
+
+(defn cut-object [objnum]
+  "Attempts to cut the given object"
+  (if (not (has-knife?))
+    (say :path '(commands no-knife))
+    (let [evt (event-for objnum :cut)]
+      (if (nil? evt)
+        (if (object-is? objnum :living)
+          (say :path '(commands cut-living))
+          (say :path '(commands cut-object)))
+        (if (string? evt) (say :raw evt) (evt))))))
+
+(defn eat-object! [objnum]
+  "Attempts to eat the given object"
+  (let [evt (event-for objnum :eat)]
+    (if (nil? evt)
+      (do
+        (say :path '(commands do-not-eat))
+        (kill-player ((object-details objnum) :inv)))
+      (do
+        (if (s/game-options :sound)
+          (u/play-sound "/sound/eat.wav"))
+        (if (string? evt) (say :raw evt) (evt))
+        (s/remove-object-from-inventory! objnum)))))
+
+(defn drink-object! [objnum]
+  "Attempts to drink the given object. The event must return a boolean value, if
+   false then the side-effect will not occur (removal of item from game)."
+  (let [evt (event-for objnum :drink)
+        drink! #(if (@s/game-options :sound)
+                  (u/play-sound "/sound/drink.wav"))
+                (s/remove-object-from-inventory! objnum)]
+    (if (nil? evt)
+      (say :path '(commands cannot-drink))
+      (if (string? evt)
+        (do (say :raw evt) (drink!))
+        (if (evt)
+          (drink!))))))
+
+(defn talk-to-object [objnum]
+  "Attempts to talk to the given object"
+  (if (not (object-is? objnum :living))
+    (say :path '(commands cannot-talk))
+    (let [evt (event-for objnum :speak)]
+      (if (nil? evt)
+        (say :path '(commands speechless))
+        (if (string? evt) (say :raw evt) (evt))))))
+
+(defn pull-object [objnum]
+  "Attempts to pull the given object (probably a lever)"
+  (let [pull-evt (event-for objnum :pull)]
+    (if (nil? pull-evt)
+      (say :path '(commands cannot-pull))
+      (pull-evt))))
 
 (defn messages []
   (println "Messages"))
