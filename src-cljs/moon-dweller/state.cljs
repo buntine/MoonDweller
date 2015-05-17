@@ -1,4 +1,5 @@
-(ns moon-dweller.state)
+(ns moon-dweller.state
+  (:require [moon-dweller.util :as u]))
 
 (def current-room 0)             ; Current room the player is in.
 (def visited-rooms [])           ; Rooms that the player has visited.
@@ -110,3 +111,23 @@
     ([room objnum]
      (alter-room! room
                   (conj (objects-in-room room) objnum)))))
+
+(defn remove-object-from-inventory! [objnum]
+  "Physically removes an object from the players inventory."
+  (set! inventory (vec (remove #(= % objnum) inventory))))
+ 
+(defn add-object-to-inventory! [objnum]
+  "Physically adds an object to the players inventory."
+  (set! inventory (conj inventory objnum)))
+
+(defn pay-the-man! [c]
+  (set! credits (+ credits c)))
+
+(defn visit-room! [room]
+  (set! visited-rooms (conj visited-rooms room)))
+
+(defn save-game! []
+  (u/md-pr "Not yet implemented!"))
+
+(defn load-game! []
+  (u/md-pr "Not yet implemented!"))
