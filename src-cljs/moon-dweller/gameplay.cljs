@@ -4,6 +4,8 @@
             [moon-dweller.state :as s])
   (:use [clojure.string :only (join split)]))
 
+(declare messages object-details)
+
 (defn say 
   "Prints s to the game screen. If given a vector of strings, a random one will be chosen."
   [& {:keys [raw path speed]
@@ -73,6 +75,36 @@
     (let [info ((object-details objnum) context)]
       (if info
         (str info)))))
+
+(defn object-is? [objnum k]
+  "Returns true is the object adheres to the given keyword"
+  ((object-details objnum) k))
+
+(defn display-inventory []
+  "Displays the players inventory"
+  (let [descs (map #(describe-object % :inv) s/inventory)]
+    (if (not (empty? descs))
+      (u/print-with-newlines descs (s/text-speed) (t/text 'inventory 'have))
+      (say :path '(inventory empty)))
+    (say :raw (str (t/text 'inventory 'credits) s/credits))))
+
+(defn describe-objects-for-room [room]
+  "Prints a description for each object that's in the given room"
+  (let [objs (s/room-objects room)]
+    (if (not (empty? objs))
+      (u/print-with-newlines
+        (remove nil? (map describe-object objs)) (s/text-speed)))))
+
+(defn describe-room ([room] (describe-room room false))
+  ([room verbose?]
+   "Prints a description of the current room"
+   (let [visited? (some #{room} s/visited-rooms)
+         descs (t/rooms room)]
+     (if visited?
+       (say :raw ((if verbose? first second) descs))
+       (s/visit-room! room)
+       (say :raw (first descs)))
+     (describe-objects-for-room room))))
 
 (defn messages []
   (println "Messages"))
