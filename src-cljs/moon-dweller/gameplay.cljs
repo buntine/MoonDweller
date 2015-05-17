@@ -221,5 +221,123 @@
       (say :path '(commands cannot-pull))
       (pull-evt))))
 
+; Functions to execute when player speaks to a given object.
+(def speech-fn-for
+  {:pod-manager
+     #(cond
+        (not (s/can-afford? 3))
+          (say :path '(talk pod-manager broke))
+        (not (s/hit-milestone? :speak-to-captain))
+          (say :path '(talk pod-manager not-ready))
+        :else
+          (do
+            (say :path '(talk pod-manager ready))
+            (say :path '(talk pod-manager flying)
+                 :speed 300)
+            (s/pay-the-man! -3)
+            (s/set-current-room! 12))),
+   :repairs-captain
+     #(if (s/hit-milestone? :speak-to-captain)
+        (say :path '(talk repairs-captain finished))
+        (do
+          (doseq [x '(a b c d e)]
+            (say :path (concat '(talk repairs-captain spiel) [x])))
+          (s/add-milestone! :speak-to-captain))),
+   :homeless-bum
+     #(say :path '(talk homeless-bum))})
+
+; Functions to execute when player gives a particular X to a Y.
+(def give-fn-for
+  {:porno-to-boy
+     #(do
+        (say :path '(give porno-to-boy))
+        (s/take-object-from-room! 7)
+        (s/drop-object-in-room! 4)),
+   :whisky-to-bum
+     #(if (not (s/hit-milestone? :alcohol-to-bum))
+        (do
+          (say :path '(give whisky-to-bum))
+          (s/add-object-to-inventory! 19)
+          (s/add-milestone! :alcohol-to-bum))
+        (say :path '(give alcohol-to-bum))),
+   :becherovka-to-bum
+     #(if (not (s/hit-milestone? :alcohol-to-bum))
+        (do
+          (say :path '(give becherovka-to-bum))
+          (s/add-object-to-inventory! 19)
+          (s/add-milestone! :alcohol-to-bum))
+        (say :path '(give alcohol-to-bum)))})
+
+; Functions to execute when player eats particular objects.
+(def eat-fn-for
+  {:eats-candy
+     #(do
+        (say :path '(eat candy))
+        (s/pay-the-man! 5))})
+
+; Functions to execute when player drinks particular objects.
+(def drink-fn-for
+  {:red-potion
+     #(do
+        (say :path '(drink red-potion))
+        (kill-player "Red potion")),
+   :green-potion
+     #(do
+        (say :path '(drink green-potion))
+        (s/add-milestone! :drinks-green-potion)
+        true),
+   :brown-potion
+     #(do
+        (say :path '(drink brown-potion a))
+        (say :path '(drink brown-potion b) :speed 250)
+        true)
+   :salvika-whisky
+     #(if (s/in-inventory? 17)
+        (do (say :path '(drink whisky success)) true)
+        (do (say :path '(drink whisky fail)) false))
+   :becherovka
+     #(if (s/in-inventory? 16)
+        (do (say :path '(drink becherovka success)) true)
+        (do (say :path '(drink becherovka fail)) false))})
+
+; Functions to execute when player pulls particular objects.
+(def pull-fn-for
+  {:control-lever
+     #(do
+        (say :path '(pull control-lever))
+        (s/take-object-from-room! 2)
+        (s/drop-object-in-room! 3)
+        (s/set-current-room! 0))})
+
+; Functions to execute when player cuts particular objects.
+(def cut-fn-for
+  {:spider-web
+     #(do
+        (say :path '(cut spider-web))
+        (s/take-object-from-room! 20))})
+ 
+; Functions to execute when player takes particular objects.
+(def take-fn-for
+  {:salvika-whisky
+     #(if (s/can-afford? 3)
+        (do
+          (s/pay-the-man! -3)
+          true)
+        (do
+          (say :path '(take whisky))
+          (kill-player "Rusty knife to the throat"))),
+    :becherovka
+      #(if (s/can-afford? 4)
+        (do
+          (s/pay-the-man! -4)
+          true)
+        (do
+          (say :path '(take becherovka))
+          (kill-player "Acid to the brain")))
+    :paper
+      (fn []
+        (say :path '(take paper))
+        true)})
+
 (defn messages []
   (describe-room s/current-room))
