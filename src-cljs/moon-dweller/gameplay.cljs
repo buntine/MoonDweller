@@ -711,5 +711,50 @@
               pull-object
               :room)))
 
+(defn cmd-look ([verbs] (cmd-inspect verbs))
+  ([]
+   "Prints a long description of a room"
+   (describe-room s/current-room true)))
+
+(defn cmd-inventory [verbs]
+  "Displays the players inventory"
+  (display-inventory))
+
+; TODO: Either remove or have it do something.
+(defn cmd-quit [verbs]
+  "Quits the game and returns user to terminal."
+  (say :path '(commands quit)))
+
+(defn cmd-bed [verbs]
+  (if (= s/current-room 0)
+    (say :path '(bed a))
+    (say :path '(bed unknown))))
+
+(letfn
+  [(do-x-with-y [verbs action sep mod-fn]
+     "Attempts to do x with y. Expects format of: '(action x sep y). E.g: give cheese to old man"
+     (let [[x y] (split-with #(not (= % sep)) verbs)]
+       (if (or (empty? x) (<= (count y) 1))
+         (say :raw (str "Sorry, I only understand the format: " action " x " (name sep) " y"))
+         (let [objx (deduce-object x :inventory)
+               objy (deduce-object (rest y) :room)]
+           (cond
+             (nil? objx)
+               (say :path '(commands do-error))
+             (seq? objx)
+               (say :raw (str "Please be more specific about the item you want to " action "."))
+             (nil? objy)
+               (say :path '(commands do-unknown))
+             (seq? objy)
+               (say :raw (str "Please be more specific about where/who you want to " action " it."))
+             :else 
+               (mod-fn objx objy))))))]
+
+  (defn cmd-give [verbs]
+    (do-x-with-y verbs 'give 'to give-object!))
+
+  (defn cmd-put [verbs]
+    (do-x-with-y verbs 'put 'in put-object!)))
+
 (defn messages []
   (describe-room s/current-room))
