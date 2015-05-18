@@ -604,7 +604,7 @@
   "Prints a line-delimited list of the commands the system understands."
   (let [commands (sort (map str (keys cmd-verbs)))]
     (doseq [c commands]
-      (println c))))
+      (u/md-pr c 5))))
 
 (letfn
   [(set-on-off! [option state]
@@ -768,22 +768,23 @@
     (say :raw "No saved game data!")))
 
 (defn cmd-help [verbs]
-  (println "  M-A-M HELP")
-  (println "  ------------------------------")
-  (println "   * Directions are north, east, south, west, northeast, southeast, southwest, northeast, in, out, up, down.")
-  (println "   * Or abbreviated n, e, s, w, ne, se, sw, nw.")
-  (println "   * Keys automatically open the appropriate doors, so just walk in their direction.")
-  (println "   * Type 'commands' to see a fat-ass list of the things I understand.")
-  (println "   * You can go 'in' and 'out' of buildings if the action is appropriate.")
-  (println "   * Credit is equivalent to our concept of money. Use it wisely!")
-  (println "   * Check your items and credit with 'inventory' or 'inv'.")
-  (println "   * You can 'speak' to humans, aliens and robots, but some may be a tad vulgar...")
-  (println "   * You can 'save' and 'load' your game, mother fucker!")
-  (println "   * You can 'give x to y' or 'put x in y' to solve many dubious mysteries.")
-  (println "   * To end the game, type 'quit' or 'commit suicide' or forever dwell in green mess!")
-  (println "   * Inspired by Dunnet, by Rob Schnell and Colossal Cave Adventure by William Crowther.")
-  (println "   * Don't forget: Life is a game and everything is pointless.")
-  (println "  ------------------------------"))
+  (print-with-newlines [
+    "  M-A-M HELP"
+    "  ------------------------------"
+    "   * Directions are north, east, south, west, northeast, southeast, southwest, northeast, in, out, up, down."
+    "   * Or abbreviated n, e, s, w, ne, se, sw, nw."
+    "   * Keys automatically open the appropriate doors, so just walk in their direction."
+    "   * Type 'commands' to see a fat-ass list of the things I understand."
+    "   * You can go 'in' and 'out' of buildings if the action is appropriate."
+    "   * Credit is equivalent to our concept of money. Use it wisely!"
+    "   * Check your items and credit with 'inventory' or 'inv'."
+    "   * You can 'speak' to humans, aliens and robots, but some may be a tad vulgar..."
+    "   * You can 'save' and 'load' your game, mother fucker!"
+    "   * You can 'give x to y' or 'put x in y' to solve many dubious mysteries."
+    "   * To end the game, type 'quit' or 'commit suicide' or forever dwell in green mess!"
+    "   * Inspired by Dunnet, by Rob Schnell and Colossal Cave Adventure by William Crowther."
+    "   * Don't forget: Life is a game and everything is pointless."
+    "  ------------------------------"]))
 
 ; Maps user commands to the appropriate function.
 (def cmd-verbs

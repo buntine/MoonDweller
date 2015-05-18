@@ -1,8 +1,5 @@
 (ns moon-dweller.util)
 
-(defn print-welcome-message []
-  (println "Welcome"))
-
 (defn play-sound [path]
   "Plays an OGG audio file"
   (let [sound (js/Audio. path)]
@@ -22,6 +19,12 @@
     (doseq
       [l (map #(str " - " %) lines)]
       (md-pr l speed))))
+
+(defn print-welcome-message []
+  (print-with-newlines [
+    "Moon Dweller"
+    "A hobby project of Andrew Buntine"
+    "https://github.com/buntine"]))
 
 (defn direction? [verb] 
   (boolean 
