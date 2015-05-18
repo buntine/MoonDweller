@@ -1,4 +1,5 @@
-(ns moon-dweller.util)
+(ns moon-dweller.util
+ (:require [dommy.core :as dom :refer-macros [sel sel1]]))
 
 (defn play-sound [path]
   "Plays an OGG audio file"
@@ -8,7 +9,9 @@
 ; TODO: Implement
 (defn md-pr [text i]
   "Prints a string one character at a time with an interval of i milliseconds"
-  (println text))
+  (let [li (dom/create-element :li)]
+    (dom/set-html! li text)
+    (dom/append! (sel1 :#history) li)))
 
 (defn print-with-newlines
   ([lines speed] (print-with-newlines lines speed ""))
@@ -21,10 +24,10 @@
       (md-pr l speed))))
 
 (defn print-welcome-message []
-  (print-with-newlines [
-    "Moon Dweller"
-    "A hobby project of Andrew Buntine"
-    "https://github.com/buntine"] 10))
+  (print-with-newlines
+    ["Moon Dweller"
+     "A hobby project of Andrew Buntine"
+     "https://github.com/buntine"] 10))
 
 (defn direction? [verb] 
   (boolean 

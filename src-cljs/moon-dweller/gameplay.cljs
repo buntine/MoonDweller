@@ -784,7 +784,7 @@
     "   * To end the game, type 'quit' or 'commit suicide' or forever dwell in green mess!"
     "   * Inspired by Dunnet, by Rob Schnell and Colossal Cave Adventure by William Crowther."
     "   * Don't forget: Life is a game and everything is pointless."
-    "  ------------------------------"]))
+    "  ------------------------------"] 10))
 
 ; Maps user commands to the appropriate function.
 (def cmd-verbs
