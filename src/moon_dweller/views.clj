@@ -8,4 +8,5 @@
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1, maximum-scale=1"}]]
     [:body
       [:h1 "Moon Dweller"]]
+     (include-css "/css/main.css")
      (include-js "/js/main.js")))
