@@ -801,8 +801,12 @@
    'drink cmd-drink 'cut cmd-cut 'stab cmd-cut 'set cmd-set 'settings cmd-set
    'commands cmd-commands})
 
-(defn messages []
-  (describe-room s/current-room))
+(defn messages ([] (messages true))
+  ([verbose]
+   "Describes current room and prompts for user input"
+   (when verbose
+     (describe-room s/current-room)
+   (parse-input (request-command))))
 
 ; TODO: Reload-page. cmd-quit should probably do that?
 (defn kill-player [reason]
