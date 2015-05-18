@@ -530,5 +530,82 @@
     [nil       25        nil       nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;29
     [nil       nil       nil       nil       nil       nil       nil       nil       26        nil       nil       nil])) ;30
 
+(defn fn-for-command [cmd]
+  "Returns the function for the given command verb, or nil"
+  (if cmd (cmd-verbs cmd)))
+
+(defn verb-parse [verb-lst]
+  "Calls the procedure identified by the first usable verb. Returns
+   false if the command is not understood"
+  (let [f (fn-for-command (first verb-lst))
+        verbs (rest verb-lst)]
+    (if (empty? verb-lst)
+      false
+      (if f
+        (and (f verbs) true)
+        (recur verbs)))))
+
+(defn command->seq [s]
+  "Translates the given string to a sequence of symbols, removing ignored words"
+  (let [verbs (split s #"\s+")]
+    (filter #(not (some #{%} ignore-words))
+            (map symbol verbs))))
+
+(defn parse-input [s]
+  "Parses the user input"
+  (if (not (empty? s))
+    (let [cmd (command->seq s)
+          orig-room s/current-room]
+      (if (false? (verb-parse cmd))
+        (say :path '(parsing unknown)))
+      (newline)
+      (messages (not (= orig-room s/current-room))))
+    (messages false)))
+
+; TODO: Replace with ClojureScript alternative.
+(defn request-command []
+  (println "request-command"))
+
+(letfn
+  [(move-room [dir]
+     "Attempts to move in the given direction."
+     (let [i (directions dir)]
+       (if (not i)
+         (say :path '(parsing unknown-dir))
+         (let [room ((world-map s/current-room) i)]
+           (if (nil? room)
+             (say :path '(parsing wrong-dir))
+             (if (fn? room)
+               (room)
+               (s/set-current-room! room)))))))]
+
+  (defn cmd-go [verbs]
+    "Expects to be given a direction. Dispatches to the 'move' command"
+    (if (empty? verbs)
+      (say :path '(parsing no-dir))
+      ; Catch commands like "go to bed", etc.
+      (if (u/direction? (first verbs))
+        (move-room (first verbs))
+        (parse-input (join " " (map name verbs))))))
+
+  (defn cmd-north [verbs] (move-room 'north))
+  (defn cmd-east [verbs] (move-room 'east))
+  (defn cmd-south [verbs] (move-room 'south))
+  (defn cmd-west [verbs] (move-room 'west))
+  (defn cmd-northeast [verbs] (move-room 'northeast))
+  (defn cmd-southeast [verbs] (move-room 'southeast))
+  (defn cmd-southwest [verbs] (move-room 'southwest))
+  (defn cmd-northwest [verbs] (move-room 'northwest))
+  (defn cmd-in [verbs] (move-room 'in))
+  (defn cmd-out [verbs] (move-room 'out))
+  (defn cmd-up [verbs] (move-room 'up))
+  (defn cmd-down [verbs] (move-room 'down)))
+
+(defn cmd-commands [verbs]
+  "Prints a line-delimited list of the commands the system understands."
+  (let [commands (sort (map str (keys cmd-verbs)))]
+    (doseq [c commands]
+      (println c))))
+
 (defn messages []
   (describe-room s/current-room))
