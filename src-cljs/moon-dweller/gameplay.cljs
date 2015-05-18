@@ -768,7 +768,7 @@
     (say :raw "No saved game data!")))
 
 (defn cmd-help [verbs]
-  (print-with-newlines [
+  (u/print-with-newlines [
     "  M-A-M HELP"
     "  ------------------------------"
     "   * Directions are north, east, south, west, northeast, southeast, southwest, northeast, in, out, up, down."

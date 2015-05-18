@@ -6,6 +6,7 @@
                  [org.clojure/clojurescript "0.0-3269"]
                  [compojure "1.3.4"]
                  [hiccup "1.0.5"]
+                 [prismatic/dommy "1.1.0"]
                  [ring/ring-defaults "0.1.2"]]
   :plugins [[lein-ring "0.9.3"]
             [lein-cljsbuild "1.0.6"]]

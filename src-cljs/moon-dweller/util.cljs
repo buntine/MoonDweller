@@ -24,7 +24,7 @@
   (print-with-newlines [
     "Moon Dweller"
     "A hobby project of Andrew Buntine"
-    "https://github.com/buntine"]))
+    "https://github.com/buntine"] 10))
 
 (defn direction? [verb] 
   (boolean 
