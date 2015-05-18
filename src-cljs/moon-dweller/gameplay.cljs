@@ -4,7 +4,7 @@
             [moon-dweller.state :as s])
   (:use [clojure.string :only (join split)]))
 
-(declare messages object-details kill-player cmd-verbs)
+(declare messages object-details kill-player cmd-verbs cmd-look)
 
 (defn say 
   "Prints s to the game screen. If given a vector of strings, a random one will be chosen."
@@ -756,5 +756,58 @@
   (defn cmd-put [verbs]
     (do-x-with-y verbs 'put 'in put-object!)))
 
+; TODO: Remove or implement.
+(defn cmd-save [verbs]
+  (s/save-game!)
+  (say :raw " * Game saved *"))
+
+; TODO: Remove or implement.
+(defn cmd-load [verbs]
+  (if (s/load-game!)
+    (say :raw " * Game loaded *")
+    (say :raw "No saved game data!")))
+
+(defn cmd-help [verbs]
+  (println "  M-A-M HELP")
+  (println "  ------------------------------")
+  (println "   * Directions are north, east, south, west, northeast, southeast, southwest, northeast, in, out, up, down.")
+  (println "   * Or abbreviated n, e, s, w, ne, se, sw, nw.")
+  (println "   * Keys automatically open the appropriate doors, so just walk in their direction.")
+  (println "   * Type 'commands' to see a fat-ass list of the things I understand.")
+  (println "   * You can go 'in' and 'out' of buildings if the action is appropriate.")
+  (println "   * Credit is equivalent to our concept of money. Use it wisely!")
+  (println "   * Check your items and credit with 'inventory' or 'inv'.")
+  (println "   * You can 'speak' to humans, aliens and robots, but some may be a tad vulgar...")
+  (println "   * You can 'save' and 'load' your game, mother fucker!")
+  (println "   * You can 'give x to y' or 'put x in y' to solve many dubious mysteries.")
+  (println "   * To end the game, type 'quit' or 'commit suicide' or forever dwell in green mess!")
+  (println "   * Inspired by Dunnet, by Rob Schnell and Colossal Cave Adventure by William Crowther.")
+  (println "   * Don't forget: Life is a game and everything is pointless.")
+  (println "  ------------------------------"))
+
+; Maps user commands to the appropriate function.
+(def cmd-verbs
+  {'go cmd-go 'n cmd-north 'e cmd-east 's cmd-south 'w cmd-west
+   'ne cmd-northeast 'se cmd-southeast 'sw cmd-southwest 'nw cmd-northwest
+   'north cmd-north 'east cmd-east 'south cmd-south 'west cmd-west
+   'northeast cmd-northeast 'southeast cmd-southeast 'southwest cmd-southwest
+   'drop cmd-drop 'throw cmd-drop 'inventory cmd-inventory 'pull cmd-pull
+   'northwest cmd-northwest 'help cmd-help 'take cmd-take 'get cmd-take 'buy cmd-take
+   'examine cmd-inspect 'inspect cmd-inspect 'look cmd-look 'quit cmd-quit 'exit cmd-quit
+   'suicide cmd-quit 'bed cmd-bed 'sleep cmd-bed 'eat cmd-eat 'fuck cmd-fuck
+   'rape cmd-fuck 'talk cmd-talk 'speak cmd-talk 'inv cmd-inventory
+   'save cmd-save 'load cmd-load 'give cmd-give 'put cmd-put 'in cmd-in
+   'out cmd-out 'enter cmd-in 'leave cmd-out 'up cmd-up 'down cmd-down
+   'drink cmd-drink 'cut cmd-cut 'stab cmd-cut 'set cmd-set 'settings cmd-set
+   'commands cmd-commands})
+
 (defn messages []
   (describe-room s/current-room))
+
+; TODO: Reload-page. cmd-quit should probably do that?
+(defn kill-player [reason]
+  "Kills the player and ends the game"
+  (if (s/game-options :sound)
+    (u/play-sound "/sound/kill.wav"))
+  (say :raw (str "You were killed by: " reason))
+  (cmd-quit false))
