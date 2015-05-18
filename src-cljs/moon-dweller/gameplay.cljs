@@ -4,7 +4,7 @@
             [moon-dweller.state :as s])
   (:use [clojure.string :only (join split)]))
 
-(declare messages object-details kill-player)
+(declare messages object-details kill-player cmd-verbs)
 
 (defn say 
   "Prints s to the game screen. If given a vector of strings, a random one will be chosen."
@@ -548,7 +548,7 @@
 (defn command->seq [s]
   "Translates the given string to a sequence of symbols, removing ignored words"
   (let [verbs (split s #"\s+")]
-    (filter #(not (some #{%} ignore-words))
+    (filter #(not (some #{%} s/ignore-words))
             (map symbol verbs))))
 
 (defn parse-input [s]
@@ -558,7 +558,6 @@
           orig-room s/current-room]
       (if (false? (verb-parse cmd))
         (say :path '(parsing unknown)))
-      (newline)
       (messages (not (= orig-room s/current-room))))
     (messages false)))
 
@@ -606,6 +605,111 @@
   (let [commands (sort (map str (keys cmd-verbs)))]
     (doseq [c commands]
       (println c))))
+
+(letfn
+  [(set-on-off! [option state]
+     (if (contains? [:on :off] state)
+       (do
+         (s/set-option! option (= state :on))
+         (say :raw "Set..."))
+       (say :path '(options error))))]
+
+  (defn cmd-set [verbs]
+    "Attempts to update the given game setting"
+    (if (not (= (count verbs) 2))
+      (letfn
+        [(format-option [opt value]
+           (str " - " (name opt) ": " (if value "On" "Off")))]
+        (say :raw "Game options:\n")
+        (say :raw (join
+                  "\n"
+                  (map #(apply format-option %)
+                       s/game-options))))
+      (let [[opt state] (map keyword verbs)]
+        (if (s/valid-option? opt)
+          (set-on-off! opt state)
+          (say :path '(options unknown)))))))
+
+(letfn
+  [(interact [verbs base mod-fn context]
+     "Attempts to interact by realising an explicit object
+      and doing something (mod-fn) with it"
+     (letfn
+       [(say-for-path [qualifier]
+          (say :path
+               (map symbol
+                    ['commands (str base "-" qualifier)])))]
+
+       (if (empty? verbs)
+         (say-for-path "error")
+         (let [objnum (deduce-object verbs context)]
+           (cond
+             (nil? objnum)
+               (say-for-path "unknown")
+             ; Specific object cannot be deduced, so ask for more info.
+             (seq? objnum)
+               (say :path '(commands interact-error))
+             :else
+               (mod-fn objnum))))))]
+
+  (defn cmd-take [verbs]
+    (interact verbs
+              'take
+              take-object!
+              :room))
+
+  (defn cmd-drop [verbs]
+    (interact verbs
+              'drop
+              drop-object!
+              :inventory))
+
+  (defn cmd-inspect [verbs]
+    (if (empty? verbs)
+      (cmd-look)
+      (interact verbs
+                'inspect
+                inspect-object
+                :room)))
+
+  (defn cmd-cut [verbs]
+    (interact verbs
+              'cut
+              cut-object
+              :room))
+
+  (defn cmd-eat [verbs]
+    (interact verbs
+              'eat
+              eat-object!
+              :inventory))
+
+  (defn cmd-drink [verbs]
+    (interact verbs
+              'drink
+              drink-object!
+              :inventory))
+
+  (defn cmd-fuck [verbs]
+    (let [v (first verbs)]
+      (if (some #(= v %) '(you me off))
+        (say :path (map symbol ['commands (str "fuck-" v)]))
+        (interact verbs
+                  'fuck
+                  fuck-object
+                  :room))))
+
+  (defn cmd-talk [verbs]
+    (interact verbs
+              'talk
+              talk-to-object
+              :room))
+
+  (defn cmd-pull [verbs]
+    (interact verbs
+              'pull
+              pull-object
+              :room)))
 
 (defn messages []
   (describe-room s/current-room))
