@@ -8,7 +8,7 @@
 
 (defn say 
   "Prints s to the game screen. If given a vector of strings, a random one will be chosen."
-  [& {:keys [raw path speed]
+  [& {:keys [raw path speed finished]
        :or {speed (s/text-speed)}}]
    (if (nil? raw)
      (say
@@ -16,7 +16,7 @@
      (if (vector? raw)
        (say
          :raw (rand-nth raw) :speed speed)
-       (u/md-pr raw speed))))
+       (u/md-pr raw speed :finished finished))))
 
 (defn prospects-for [verb context]
   "Returns the prospective objects for the given verb.
@@ -99,13 +99,15 @@
   ([room verbose?]
    "Prints a description of the current room"
    (let [visited? (some #{room} s/visited-rooms)
-         descs (t/rooms room)]
+         descs (t/rooms room)
+         finished #(describe-objects-for-room room)]
      (if visited?
-       (say :raw ((if verbose? first second) descs))
+       (say :raw ((if verbose? first second) descs)
+            :finished finished)
        (do
          (s/visit-room! room)
-         (say :raw (first descs))))
-     (describe-objects-for-room room))))
+         (say :raw (first descs)
+              :finished finished))))))
 
 (defn take-object! [objnum]
   "Attempts to take an object from the current room. If the object

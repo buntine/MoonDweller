@@ -6,15 +6,16 @@
   (let [sound (js/Audio. path)]
     (.play sound)))
 
-(defn md-pr [text i]
+(defn md-pr [text i & {:keys [finished] :or {finished #()}}]
   "Prints a string one character at a time with an interval of i milliseconds"
   (let [li (dom/create-element :li)]
     (letfn [(populate [t]
-             (when (not (empty? t))
+             (if (not (empty? t))
                (let [f (first t)
                      html (dom/html li)]
-                 (dom/set-html! li (str html f)))
-                 (.setTimeout js/window #(populate (rest t)) i)))]
+                 (dom/set-html! li (str html f))
+                 (.setTimeout js/window #(populate (rest t)) i))
+               (finished)))]
       (populate text)
       (dom/append! (sel1 :#history) li))))
 
@@ -23,10 +24,9 @@
   ([lines speed prepend]
     "Prints a sequence of strings, separated by newlines. Only useful for side-effects"
     (if (not (empty? prepend))
-      (md-pr prepend speed))
-    (doseq
-      [l (map #(str " - " %) lines)]
-      (md-pr l speed))))
+      (md-pr prepend speed :finished #(print-with-newlines lines speed))
+      (if (not (empty? lines))
+        (md-pr (first lines) speed :finished #(print-with-newlines (rest lines) speed))))))
 
 (defn print-welcome-message []
   (print-with-newlines
