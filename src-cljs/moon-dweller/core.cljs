@@ -6,8 +6,7 @@
 
 (defn main []
     "Game initializer. Welcomes user and starts loop."
-    (u/play-sound "/sound/opening.wav")
-    (u/print-welcome-message)
+ ;   (u/play-sound "/sound/opening.wav")
     (messages))
 
 (main)

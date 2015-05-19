@@ -19,9 +19,9 @@ h3 {
     line-height: 15.3999996185303px;
     color: #00ff00;
 }
-p {
+p, li {
     font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
-    font-size: 14px;
+    font-size: 18px;
     font-style: normal;
     font-variant: normal;
     font-weight: 400;

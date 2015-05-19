@@ -6,12 +6,17 @@
   (let [sound (js/Audio. path)]
     (.play sound)))
 
-; TODO: Implement
 (defn md-pr [text i]
   "Prints a string one character at a time with an interval of i milliseconds"
   (let [li (dom/create-element :li)]
-    (dom/set-html! li text)
-    (dom/append! (sel1 :#history) li)))
+    (letfn [(populate [t]
+             (when (not (empty? t))
+               (let [f (first t)
+                     html (dom/html li)]
+                 (dom/set-html! li (str html f)))
+                 (.setTimeout js/window #(populate (rest t)) i)))]
+      (populate text)
+      (dom/append! (sel1 :#history) li))))
 
 (defn print-with-newlines
   ([lines speed] (print-with-newlines lines speed ""))
