@@ -19,7 +19,13 @@ h3 {
     line-height: 15.3999996185303px;
     color: #00ff00;
 }
+ul#history {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 p, li {
+    margin: 8px 0;
     font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
     font-size: 18px;
     font-style: normal;

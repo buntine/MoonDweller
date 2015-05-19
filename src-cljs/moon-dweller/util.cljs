@@ -6,6 +6,14 @@
   (let [sound (js/Audio. path)]
     (.play sound)))
 
+(defn disable-input! []
+  (-> (sel1 "#command")
+      (dom/set-attr! :disabled)))
+
+(defn enable-input! []
+  (-> (sel1 "#command")
+      (dom/remove-attr! :disabled)))
+
 (defn md-pr [text i & {:keys [finished] :or {finished #()}}]
   "Prints a string one character at a time with an interval of i milliseconds"
   (let [li (dom/create-element :li)]
@@ -15,7 +23,10 @@
                      html (dom/html li)]
                  (dom/set-html! li (str html f))
                  (.setTimeout js/window #(populate (rest t)) i))
-               (finished)))]
+               (do
+                 (enable-input!)
+                 (finished))))]
+      (disable-input!)
       (populate text)
       (dom/append! (sel1 :#history) li))))
 
@@ -26,7 +37,8 @@
     (if (not (empty? prepend))
       (md-pr prepend speed :finished #(print-with-newlines lines speed))
       (if (not (empty? lines))
-        (md-pr (first lines) speed :finished #(print-with-newlines (rest lines) speed))))))
+        (md-pr (str " - " (first lines)) speed
+               :finished #(print-with-newlines (rest lines) speed))))))
 
 (defn print-welcome-message []
   (print-with-newlines
