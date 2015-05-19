@@ -1,10 +1,11 @@
 (ns moon-dweller.gameplay
   (:require [moon-dweller.util :as u]
             [moon-dweller.text :as t]
-            [moon-dweller.state :as s])
+            [moon-dweller.state :as s]
+            [dommy.core :as dom :refer-macros [sel sel1]])
   (:use [clojure.string :only (join split)]))
 
-(declare messages object-details kill-player cmd-verbs cmd-look)
+(declare object-details kill-player cmd-verbs cmd-look)
 
 (defn say 
   "Prints s to the game screen. If given a vector of strings, a random one will be chosen."
@@ -95,7 +96,9 @@
       (u/print-with-newlines
         (remove nil? (map describe-object objs)) (s/text-speed)))))
 
-(defn describe-room ([room] (describe-room room false))
+(defn describe-room
+  ([] (describe-room s/current-room false))
+  ([room] (describe-room room false))
   ([room verbose?]
    "Prints a description of the current room"
    (let [visited? (some #{room} s/visited-rooms)
@@ -560,12 +563,8 @@
           orig-room s/current-room]
       (if (false? (verb-parse cmd))
         (say :path '(parsing unknown)))
-      (messages (not (= orig-room s/current-room))))
-    (messages false)))
-
-; TODO: Replace with ClojureScript alternative.
-(defn request-command []
-  (println "request-command"))
+        (if (not (= orig-room s/current-room))
+          (describe-room)))))
 
 (letfn
   [(move-room [dir]
@@ -804,13 +803,6 @@
    'drink cmd-drink 'cut cmd-cut 'stab cmd-cut 'set cmd-set 'settings cmd-set
    'commands cmd-commands})
 
-(defn messages ([] (messages true))
-  ([verbose]
-   "Describes current room and prompts for user input"
-   (when verbose
-     (describe-room s/current-room)
-   (parse-input (request-command)))))
-
 ; TODO: Reload-page. cmd-quit should probably do that?
 (defn kill-player [reason]
   "Kills the player and ends the game"
@@ -818,3 +810,7 @@
     (u/play-sound "/sound/kill.wav"))
   (say :raw (str "You were killed by: " reason))
   (cmd-quit false))
+
+(dom/listen! (sel1 "#commands") :submit (fn [e]
+  (parse-input (dom/value (sel1 "#command")))
+  (.preventDefault e)))
