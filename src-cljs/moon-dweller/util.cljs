@@ -8,11 +8,13 @@
 
 (defn disable-input! []
   (-> (sel1 "#command")
+      (dom/set-value! "")
       (dom/set-attr! :disabled)))
 
 (defn enable-input! []
   (-> (sel1 "#command")
-      (dom/remove-attr! :disabled)))
+      (dom/remove-attr! :disabled)
+      (.focus)))
 
 (defn md-pr [text i & {:keys [finished] :or {finished #()}}]
   "Prints a string one character at a time with an interval of i milliseconds"
