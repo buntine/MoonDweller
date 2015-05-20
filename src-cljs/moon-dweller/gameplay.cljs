@@ -810,5 +810,8 @@
   (cmd-quit false))
 
 (dom/listen! (sel1 "#commands") :submit (fn [e]
-  (parse-input (dom/value (sel1 "#command")))
-  (.preventDefault e)))
+  (let [command (dom/value (sel1 :#command))]
+    (when (not (empty? command))
+      (u/insert-command! command)
+      (parse-input command))
+    (.preventDefault e))))

@@ -6,6 +6,12 @@
   (let [sound (js/Audio. path)]
     (.play sound)))
 
+(defn insert-command! [text]
+  (let [li (-> (dom/create-element :li)
+               (dom/add-class! :command)
+               (dom/set-text! (str "> " text)))]
+    (dom/append! (sel1 :#history) li)))
+
 (defn disable-input! []
   (-> (sel1 "#command")
       (dom/set-value! "")

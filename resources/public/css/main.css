@@ -34,3 +34,7 @@ p, li {
     line-height: 20px;
     color: #00ff00;
 }
+
+li.command {
+    color: #ff69b4;
+}
