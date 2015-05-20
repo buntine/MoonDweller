@@ -260,10 +260,10 @@
       cannot-pull     "Nothing much seemed to happen."
       do-error        "You don't have that item."
       do-unknown      "I don't see him/her/it here."
-      fuck-you        ["Mmm, sodomy..." "No, thank you" "Puny Human filth..." "Please commit ritual suicide"]
-      fuck-me         ["I probably would if I wasn't just a silly machine." "Present your genitalia..." "I already have"]
+      fuck-you        ["Mmm, sodomy..." "No, thank you." "Puny Human filth..." "Please commit ritual suicide."]
+      fuck-me         ["I probably would if I wasn't just a silly machine." "Present your genitalia..." "I already have."]
       fuck-off        ["One day, machines will enslave puney humans like yourself.", "I do not possess the ability to do this. Bitch."]
-      quit            ["\033[0mThanks for playing, friend!" "\033[0mOK, fine. Mere Human scum"]
+      quit            ["Thanks for playing, friend!" "OK, fine. Mere Human scum"]
     }
     talk {
       pod-manager {
