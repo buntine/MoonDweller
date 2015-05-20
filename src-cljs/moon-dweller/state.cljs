@@ -89,10 +89,12 @@
                  (.setTimeout js/window #(populate (rest t)) i))
                (do
                  (u/enable-input!)
+                 (u/scroll-to-bottom)
                  (consume-messages))))]
       (u/disable-input!)
       (populate text)
-      (dom/append! (sel1 :#history) li))))
+      (dom/append! (sel1 :#history) li)
+      (u/scroll-to-bottom))))
 
 (defn print-with-newlines
   ([lines speed] (print-with-newlines lines speed ""))

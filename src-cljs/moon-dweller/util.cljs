@@ -6,6 +6,9 @@
   (let [sound (js/Audio. path)]
     (.play sound)))
 
+(defn scroll-to-bottom []
+  (.scrollTo js/window 0 (.. js/document -body -scrollHeight)))
+
 (defn insert-command! [text]
   (let [li (-> (dom/create-element :li)
                (dom/add-class! :command)
