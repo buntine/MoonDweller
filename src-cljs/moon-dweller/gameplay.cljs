@@ -719,7 +719,6 @@
   "Displays the players inventory"
   (display-inventory))
 
-; TODO: Either remove or have it do something.
 (defn cmd-quit [verbs]
   "Quits the game and returns user to terminal."
   (say :path '(commands quit)))
@@ -798,13 +797,12 @@
    'drink cmd-drink 'cut cmd-cut 'stab cmd-cut 'set cmd-set 'settings cmd-set
    'commands cmd-commands})
 
-; TODO: Reload-page. cmd-quit should probably do that?
 (defn kill-player [reason]
   "Kills the player and ends the game"
   (if (s/game-options :sound)
     (u/play-sound "/sound/kill.wav"))
   (say :raw (str "You were killed by: " reason))
-  (cmd-quit false))
+  (.setTimeout js/window #(.reload js/location) 5000))
 
 (dom/listen! (sel1 "#commands") :submit (fn [e]
   (let [command (dom/value (sel1 :#command))]
