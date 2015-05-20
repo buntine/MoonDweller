@@ -40,10 +40,10 @@ li.command {
 }
 
 input#command {
-    background-color: #151515;
+    background-color: #282828;
     color: #fff;
     font-size: 24px;
-    border: 2px #383838 solid;
+    border: 2px #282828 solid;
     height: 60px;
     position: fixed;
     bottom: 10px;

@@ -768,22 +768,19 @@
 
 (defn cmd-help [verbs]
   (s/print-with-newlines [
-    "  M-A-M HELP"
-    "  ------------------------------"
-    "   * Directions are north, east, south, west, northeast, southeast, southwest, northeast, in, out, up, down."
-    "   * Or abbreviated n, e, s, w, ne, se, sw, nw."
-    "   * Keys automatically open the appropriate doors, so just walk in their direction."
-    "   * Type 'commands' to see a fat-ass list of the things I understand."
-    "   * You can go 'in' and 'out' of buildings if the action is appropriate."
-    "   * Credit is equivalent to our concept of money. Use it wisely!"
-    "   * Check your items and credit with 'inventory' or 'inv'."
-    "   * You can 'speak' to humans, aliens and robots, but some may be a tad vulgar..."
-    "   * You can 'save' and 'load' your game, mother fucker!"
-    "   * You can 'give x to y' or 'put x in y' to solve many dubious mysteries."
-    "   * To end the game, type 'quit' or 'commit suicide' or forever dwell in green mess!"
-    "   * Inspired by Dunnet, by Rob Schnell and Colossal Cave Adventure by William Crowther."
-    "   * Don't forget: Life is a game and everything is pointless."
-    "  ------------------------------"] 10))
+    "Directions are north, east, south, west, northeast, southeast, southwest, northeast, in, out, up, down."
+    "Or abbreviated n, e, s, w, ne, se, sw, nw."
+    "Keys automatically open the appropriate doors, so just walk in their direction."
+    "Type 'commands' to see a fat-ass list of the things I understand."
+    "You can go 'in' and 'out' of buildings if the action is appropriate."
+    "Credit is equivalent to our concept of money. Use it wisely!"
+    "Check your items and credit with 'inventory' or 'inv'."
+    "You can 'speak' to humans, aliens and robots, but some may be a tad vulgar..."
+    "You can 'save' and 'load' your game, mother fucker!"
+    "You can 'give x to y' or 'put x in y' to solve many dubious mysteries."
+    "To end the game, type 'quit' or 'commit suicide' or forever dwell in green mess!"
+    "Inspired by Dunnet, by Rob Schnell and Colossal Cave Adventure by William Crowther."
+    "Don't forget: Life is a game and everything is pointless."] 10 "MOON DWELLER HELP"))
 
 ; Maps user commands to the appropriate function.
 (def cmd-verbs
