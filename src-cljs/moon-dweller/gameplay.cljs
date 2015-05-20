@@ -17,7 +17,7 @@
      (if (vector? raw)
        (say
          :raw (rand-nth raw) :speed speed)
-       (u/md-pr raw speed))))
+       (s/md-pr raw speed))))
 
 (defn prospects-for [verb context]
   "Returns the prospective objects for the given verb.
@@ -85,7 +85,7 @@
   "Displays the players inventory"
   (let [descs (map #(describe-object % :inv) s/inventory)]
     (if (not (empty? descs))
-      (u/print-with-newlines descs (s/text-speed) (t/text 'inventory 'have))
+      (s/print-with-newlines descs (s/text-speed) (t/text 'inventory 'have))
       (say :path '(inventory empty)))
     (say :raw (str (t/text 'inventory 'credits) s/credits))))
 
@@ -93,7 +93,7 @@
   "Prints a description for each object that's in the given room"
   (let [objs (s/room-objects room)]
     (if (not (empty? objs))
-      (u/print-with-newlines
+      (s/print-with-newlines
         (remove nil? (map describe-object objs)) (s/text-speed)))))
 
 (defn describe-room
@@ -603,7 +603,7 @@
   "Prints a line-delimited list of the commands the system understands."
   (let [commands (sort (map str (keys cmd-verbs)))]
     (doseq [c commands]
-      (u/md-pr c 5))))
+      (s/md-pr c 5))))
 
 (letfn
   [(set-on-off! [option state]
@@ -767,7 +767,7 @@
     (say :raw "No saved game data!")))
 
 (defn cmd-help [verbs]
-  (u/print-with-newlines [
+  (s/print-with-newlines [
     "  M-A-M HELP"
     "  ------------------------------"
     "   * Directions are north, east, south, west, northeast, southeast, southwest, northeast, in, out, up, down."

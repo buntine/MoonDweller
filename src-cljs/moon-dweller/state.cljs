@@ -2,6 +2,8 @@
   (:require [moon-dweller.util :as u]
             [dommy.core :as dom :refer-macros [sel sel1]]))
 
+(declare print-message)
+
 (def total-weight 12)
 (def ignore-words '(that is the
                     fucking fuckin
@@ -70,10 +72,10 @@
   (set! messages (conj messages [text i])))
 
 (defn consume-messages []
-  (if (> (count messages) 1)
+  (if (> (count messages) 0)
     (do
       (apply print-message (first messages))
-      (set! messages (rest messages)))
+      (set! messages (apply vector (rest messages))))
     (.setTimeout js/window consume-messages 200)))
 
 (defn print-message [text i]
@@ -171,7 +173,7 @@
   (set! visited-rooms (conj visited-rooms room)))
 
 (defn save-game! []
-  (u/md-pr "Not yet implemented!" (text-speed)))
+  (md-pr "Not yet implemented!" (text-speed)))
 
 (defn load-game! []
-  (u/md-pr "Not yet implemented!" (text-speed)))
+  (md-pr "Not yet implemented!" (text-speed)))
