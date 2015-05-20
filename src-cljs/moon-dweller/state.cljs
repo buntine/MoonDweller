@@ -1,5 +1,6 @@
 (ns moon-dweller.state
-  (:require [moon-dweller.util :as u]))
+  (:require [moon-dweller.util :as u]
+            [dommy.core :as dom :refer-macros [sel sel1]]))
 
 (def total-weight 12)
 (def ignore-words '(that is the
@@ -10,6 +11,7 @@
 (def inventory [])               ; Players inventory of items.
 (def credits 0)                  ; Players credits (aka $$$).
 (def milestones #{})             ; Players milestones. Used to track and manipulate story.
+(def messages [])                ; Message queue.
 (def game-options {:retro true   ; Print to stdout with tiny pauses between characters.
                    :sound true}) ; Play sound during gameplay.
 
@@ -63,6 +65,33 @@
      'credits 18 'attendant 15 'woman 15 'salvika 16 'whisky 16 'becherovka 17
      'web 20 'knife 19 'small 19 'thin 22 'skinny 22 'fat 21 'paper 24 'book 25
      'stone 26 'rock 26})
+
+(defn md-pr [text i]
+  (set! messages (conj messages [text i])))
+
+(defn consume-message [text i]
+  "Prints a string one character at a time with an interval of i milliseconds"
+  (let [li (dom/create-element :li)]
+    (letfn [(populate [t]
+             (if (not (empty? t))
+               (let [f (first t)
+                     html (dom/html li)]
+                 (dom/set-html! li (str html f))
+                 (.setTimeout js/window #(populate (rest t)) i))
+               (u/enable-input!)))]
+      (u/disable-input!)
+      (populate text)
+      (dom/append! (sel1 :#history) li))))
+
+(defn print-with-newlines
+  ([lines speed] (print-with-newlines lines speed ""))
+  ([lines speed prepend]
+    "Prints a sequence of strings in list format."
+    (if (not (empty? prepend))
+      (md-pr prepend speed))
+    (if (not (empty? lines))
+        (doseq [l lines]
+          (md-pr (str " - " l) speed)))))
 
 (defn set-option! [option value]
   "Sets one of the pre-defined game options. Assumes valid input."
