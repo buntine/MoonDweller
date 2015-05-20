@@ -69,7 +69,14 @@
 (defn md-pr [text i]
   (set! messages (conj messages [text i])))
 
-(defn consume-message [text i]
+(defn consume-messages []
+  (if (> (count messages) 1)
+    (do
+      (apply print-message (first messages))
+      (set! messages (rest messages)))
+    (.setTimeout js/window consume-messages 200)))
+
+(defn print-message [text i]
   "Prints a string one character at a time with an interval of i milliseconds"
   (let [li (dom/create-element :li)]
     (letfn [(populate [t]
@@ -78,7 +85,9 @@
                      html (dom/html li)]
                  (dom/set-html! li (str html f))
                  (.setTimeout js/window #(populate (rest t)) i))
-               (u/enable-input!)))]
+               (do
+                 (u/enable-input!)
+                 (consume-messages))))]
       (u/disable-input!)
       (populate text)
       (dom/append! (sel1 :#history) li))))
@@ -89,9 +98,8 @@
     "Prints a sequence of strings in list format."
     (if (not (empty? prepend))
       (md-pr prepend speed))
-    (if (not (empty? lines))
-        (doseq [l lines]
-          (md-pr (str " - " l) speed)))))
+    (doseq [l lines]
+      (md-pr (str " - " l) speed))))
 
 (defn set-option! [option value]
   "Sets one of the pre-defined game options. Assumes valid input."
