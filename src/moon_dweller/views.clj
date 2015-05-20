@@ -9,6 +9,7 @@
     [:body
       [:h1 "Moon Dweller"]
       [:ul {:id "history"}]
+      [:div {:id "block"}]
       [:form {:id "commands"}
         [:input {:type "text" :id "command" :autocomplete "off"}]]]
      (include-css "/css/main.css")
