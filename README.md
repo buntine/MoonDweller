@@ -1,19 +1,22 @@
-# moon-dweller
+# MOON DWELLER
 
-FIXME
+A text-based adventure.
 
-## Prerequisites
+You've woken abruptly in a small, silver-walled room with no windows. There is a door to the east. What will you do? The choice is yours...
 
-You will need [Leiningen][] 2.0.0 or above installed.
+This project is dedicated to the memory of my friend Adam Hillier.
 
-[leiningen]: https://github.com/technomancy/leiningen
+Play it now at [moondweller.io](http://moondweller.io/).
 
-## Running
+## History
 
-To start a web server for the application, run:
+This is a re-imagining of [Medieval Alien Massacre](https://github.com/buntine/Medieval-Alien-Massacre/), a text-based game I wrote back in 2010 in Clojure. I've ported it to ClojureScript here so it can run in the browser.
 
-    lein ring server
+## Notes
+
+ - Type the 'help' command in gameplay for some tips and instructions.
+ - Inspired by Dunnet, by Rob Schnell ($ emacs -batch -l dunnet).
 
 ## License
 
-Copyright © 2015 FIXME
+Copyright © 2015 Andrew Buntine (http://bunts.io)
