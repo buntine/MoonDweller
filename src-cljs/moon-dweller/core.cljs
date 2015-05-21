@@ -7,7 +7,6 @@
 
 (defn main []
     "Game initializer. Welcomes user and starts loop."
- ;   (u/play-sound "/sound/opening.wav")
     (describe-room)
     (consume-messages))
 
