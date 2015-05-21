@@ -809,5 +809,5 @@
   (let [command (dom/value (sel1 :#command))]
     (when (not (empty? command))
       (u/insert-command! command)
-      (parse-input command))
+      (parse-input (clojure.string/lower-case command)))
     (.preventDefault e))))

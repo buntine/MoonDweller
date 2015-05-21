@@ -67,5 +67,19 @@ div#title {
 
 div#title img {
     margin: auto;
+    max-width: 100%;
     display: block;
+}
+
+a#github-ribbon img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+}
+
+@media (max-width: 800px) {
+    a#github-ribbon {
+        display: none;
+    }
 }
