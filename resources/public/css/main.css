@@ -59,3 +59,13 @@ div#block {
     height: 80px;
     width: 100%;
 }
+
+div#title {
+    width: 100%;
+    height: 120px;
+}
+
+div#title img {
+    margin: auto;
+    display: block;
+}

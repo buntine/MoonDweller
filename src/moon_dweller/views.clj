@@ -8,6 +8,8 @@
       [:meta {:name "viewport" :content "width=device-width, initial-scale=1, maximum-scale=1"}]]
     [:body
       [:h1 "Moon Dweller"]
+      [:div {:id "title"}
+        [:img {:src "/images/heading.png" :alt "Moon Dweller"}]]
       [:ul {:id "history"}]
       [:div {:id "block"}]
       [:form {:id "commands"}
