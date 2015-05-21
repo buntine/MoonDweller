@@ -144,10 +144,11 @@
   [(give-or-put [evt objx objy err-msg]
      "Does give/put with objects x and y. E.g: give cheese to old man"
      (let [events (event-for objy evt)]
-       (when (or (nil? events) (not (events objx)))
+       (if (or (nil? events) (not (events objx)))
          (say :raw err-msg)
-         ((events objx))
-         (s/remove-object-from-inventory! objx))))]
+         (do
+           ((events objx))
+           (s/remove-object-from-inventory! objx)))))]
 
   (defn give-object! [objx objy]
     (give-or-put :give objx objy (t/text 'commands 'give-error)))
