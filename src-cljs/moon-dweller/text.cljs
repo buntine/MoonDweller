@@ -239,6 +239,8 @@
       drink-unknown   "You don't have that item..."
       fuck-error      ["Fuck what, exactly?", "Settle down, poser"]
       fuck-unknown    ["I don't see him/her/it here...", "You're starting to make me horny"]
+      kill-error      ["Kill who?", "You're very aggressive today..."]
+      kill-unknown    ["I don't see him/her here...", "You're very dangerous. But I am not scared of you."]
       talk-error      "Talk to who exactly, dumbass?"
       talk-unknown    "I don't see him/her/it here..."
       pull-error      "I don't know what to pull."

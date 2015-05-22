@@ -174,9 +174,9 @@
 
 (defn kill-object [objnum]
    "Attempts to kill the given object"
-   (if (not (object-is? objnum :living))
-     (say :path '(commands kill-object))
-     (say :path '(commands kill-living))))
+   (if (object-is? objnum :living)
+     (say :path '(commands kill-living))
+     (say :path '(commands kill-object))))
 
 (defn cut-object [objnum]
   "Attempts to cut the given object"
@@ -701,7 +701,7 @@
     (interact verbs
               'kill
               kill-object
-              :room))
+              :all))
 
   (defn cmd-fuck [verbs]
     (let [v (first verbs)]
