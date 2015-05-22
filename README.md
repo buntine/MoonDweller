@@ -1,12 +1,12 @@
-# MOON DWELLER
+![Moon Dweller](/resources/public/images/heading.png?raw=true "Moon Dweller")
 
-A text-based adventure.
+MOON DWELLER: A text-based adventure in your web browser.
 
 You've woken abruptly in a small, silver-walled room with no windows. There is a door to the east. What will you do? The choice is yours...
 
 This project is dedicated to the memory of my friend Adam Hillier.
 
-Play it now at [moondweller.io](http://moondweller.io/).
+Play it now at [moondweller.io](http://moon-dweller-staging.elasticbeanstalk.com/).
 
 ## History
 
