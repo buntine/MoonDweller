@@ -23,8 +23,9 @@
   "Returns the prospective objects for the given verb.
    E.g: 'cheese' might mean objects 6 and 12 or object 9 or nothing."
   (let [objnums (s/object-identifiers verb)
-        fns {:room #(s/room-has-object? %)
-             :inventory s/in-inventory?}]
+        fns {:room s/room-has-object?
+             :inventory s/in-inventory?
+             :all #(some true? ((juxt s/room-has-object? s/in-inventory?) %))}]
     (if (nil? objnums)
       '()
       (filter (fns context)
@@ -170,6 +171,15 @@
          (u/play-sound "/sound/fuck.wav"))
        (say :path '(commands fuck-living)))))
   {:ridiculous true})
+
+(defn kill-object [objnum]
+   "Attempts to kill the given object"
+   (if (not (object-is? objnum :living))
+     (say :path '(commands fuck-object))
+     (do
+       (if (s/game-options :sound)
+         (u/play-sound "/sound/fuck.wav"))
+       (say :path '(commands fuck-living)))))
 
 (defn cut-object [objnum]
   "Attempts to cut the given object"
@@ -670,7 +680,7 @@
       (interact verbs
                 'inspect
                 inspect-object
-                :room)))
+                :all)))
 
   (defn cmd-cut [verbs]
     (interact verbs
@@ -690,6 +700,12 @@
               drink-object!
               :inventory))
 
+  (defn cmd-kill [verbs]
+    (interact verbs
+              'kill
+              kill-object
+              :room))
+
   (defn cmd-fuck [verbs]
     (let [v (first verbs)]
       (if (some #(= v %) '(you me off))
@@ -697,7 +713,7 @@
         (interact verbs
                   'fuck
                   fuck-object
-                  :room))))
+                  :all))))
 
   (defn cmd-talk [verbs]
     (interact verbs
@@ -792,9 +808,9 @@
    'northwest cmd-northwest 'help cmd-help 'take cmd-take 'get cmd-take 'buy cmd-take
    'examine cmd-inspect 'inspect cmd-inspect 'look cmd-look 'quit cmd-quit 'exit cmd-quit
    'suicide cmd-quit 'bed cmd-bed 'sleep cmd-bed 'eat cmd-eat 'fuck cmd-fuck
-   'rape cmd-fuck 'talk cmd-talk 'speak cmd-talk 'inv cmd-inventory
-   'save cmd-save 'load cmd-load 'give cmd-give 'put cmd-put 'in cmd-in
-   'out cmd-out 'enter cmd-in 'leave cmd-out 'up cmd-up 'down cmd-down
+   'rape cmd-fuck 'kill cmd-kill 'murder cmd-kill 'talk cmd-talk 'speak cmd-talk
+   'inv cmd-inventory 'save cmd-save 'load cmd-load 'give cmd-give 'put cmd-put
+   'in cmd-in 'out cmd-out 'enter cmd-in 'leave cmd-out 'up cmd-up 'down cmd-down
    'drink cmd-drink 'cut cmd-cut 'stab cmd-cut 'set cmd-set 'settings cmd-set
    'commands cmd-commands})
 
