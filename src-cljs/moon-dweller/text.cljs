@@ -248,6 +248,8 @@
       dropped         "Dropped..."
       fuck-object     ["You start fucking away but it just feels painful." "You try, but it just won't fit!" "...Dude"]
       fuck-living     ["Hmm... I bet that felt pretty good!" "*Pump* *Pump* *Pump*" "The room is filled with a dank scent of deep musk. It's actually kinda' gross..."]
+      kill-object     "You cannot kill things that do not possess the gift of life."
+      kill-living     ["Please stop trying to kill everyone." "...You need help." "This character is important to the story and therefore really should not be killed."]
       give-error      "He/she/it cannot accept this item."
       put-error       "You cannot put this item here."
       no-knife        "You need a something sharp before you can cut this!"

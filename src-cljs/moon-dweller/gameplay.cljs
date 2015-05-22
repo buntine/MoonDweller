@@ -175,11 +175,8 @@
 (defn kill-object [objnum]
    "Attempts to kill the given object"
    (if (not (object-is? objnum :living))
-     (say :path '(commands fuck-object))
-     (do
-       (if (s/game-options :sound)
-         (u/play-sound "/sound/fuck.wav"))
-       (say :path '(commands fuck-living)))))
+     (say :path '(commands kill-object))
+     (say :path '(commands kill-living))))
 
 (defn cut-object [objnum]
   "Attempts to cut the given object"
