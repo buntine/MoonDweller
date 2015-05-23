@@ -105,7 +105,7 @@
      alien-boy {
        game    "There is a teenage alien boy here!"
        inspect "He is excitedly looking for something..."
-       speak   "He mentions that he's looking for 'lots of ass porn with Sasha Grey'. You nod, knowingly"
+       speak   "He mentions that he's looking for 'lots of Humanoid ass porn'. You nod, knowingly"
      }
      pod-manager {
        game    "There is an Alien man here"
@@ -136,7 +136,7 @@
      }
      brown-potion {
        game    "There is a brown potion here"
-       inspect "It seems to be bubbling!"
+       inspect "It seems to be bubbling! It looks suspiciously like liquid feces."
        inv     "Brown potion"
      }
      shop-att-a {
@@ -150,9 +150,9 @@
        speak   "Bottle of Salvika whisky"
      }
      becherovka {
-       game    "There is a bottle of Becherovka (a Czech Liquer) here"
+       game    "There is a bottle of Lagavulin 198 (a Scotch Whisky) here"
        inspect "Looks great. The price tag says 4 credits."
-       speak   "Bottle of Becherovka"
+       speak   "Bottle of Lagavulin 198"
      }
      five-credits {
        game    "There is 5 credits here!"
@@ -291,7 +291,7 @@
     give {
       porno-to-boy      "The teenagers eyes explode!! He quickly accepts the porno mag and runs away. He throws a green keycard in your general direction as he leaves the room."
       whisky-to-bum     "The old bum accepts the whisky and says 'Wow!! Thank you, cobba! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
-      becherovka-to-bum "The old bum accepts the whisky and says 'Holy fuck, Becherovka! My favourite! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
+      becherovka-to-bum "The old bum accepts the whisky and says 'Holy fuck, Lagavulin! My favourite! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
       alcohol-to-bum    "He accepts the alcohol, but just grumbles something about Common LISP in response"
     }
     eat {
@@ -322,7 +322,7 @@
     }
     take {
       whisky     "You try to take the whisky without paying, but the attendant swiftly thrusts a rusted knife into your jugular."
-      becherovka "You try to take the Becherovka without paying, but the attendant displays a vile of acid and forcfully pours it into your eyeballs."
+      becherovka "You try to take the Lagavulin without paying, but the attendant displays a vile of acid and forcfully pours it into your eyeballs."
       paper      "As you take the paper, you notice that it's actually got a function in ML written on it. There is an obvious mistake in the source code, so you fix it up and then put it in your pocket."
     } 
     secret {
