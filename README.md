@@ -6,7 +6,7 @@ You've woken abruptly in a small, silver-walled room with no windows. There is a
 
 This project is dedicated to the memory of my friend Adam Hillier.
 
-Play it now at [moondweller.io](http://moon-dweller-staging.elasticbeanstalk.com/).
+[PLAY IT NOW](http://moon-dweller-staging.elasticbeanstalk.com/).
 
 ## History
 
