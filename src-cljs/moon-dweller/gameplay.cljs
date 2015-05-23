@@ -57,7 +57,7 @@
 
 (defn has-knife? []
   "Returns true if the player has a knife-like object"
-  (some #((object-details %) :cutter) s/inventory))
+  (some (fn [o] ((object-details o) :cutter)) s/inventory))
 
 (defn obj-weight [objnum]
   "Returns the weight assigned to the given object"
@@ -206,9 +206,11 @@
   "Attempts to drink the given object. The event must return a boolean value, if
    false then the side-effect will not occur (removal of item from game)."
   (let [evt (event-for objnum :drink)
-        drink! #((if (s/game-options :sound)
-                  (u/play-sound "/sound/drink.wav"))
-                (s/remove-object-from-inventory! objnum))]
+        drink! (fn []
+                 (if (s/game-options :sound)
+                   (u/play-sound "/sound/drink.wav"))
+                 (println "asas")
+                 (s/remove-object-from-inventory! objnum))]
     (if (nil? evt)
       (say :path '(commands cannot-drink))
       (if (string? evt)
