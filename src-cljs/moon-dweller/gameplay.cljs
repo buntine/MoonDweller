@@ -617,7 +617,7 @@
 
 (letfn
   [(set-on-off! [option state]
-     (if (contains? [:on :off] state)
+     (if (contains? #{:on :off} state)
        (do
          (s/set-option! option (= state :on))
          (say :raw "Set..."))
