@@ -18,7 +18,7 @@
                    :sound true}) ; Play sound during gameplay.
 
 (defn text-speed []
-  (if (game-options :retro) 25 0))
+  (if (game-options :retro) 12 1))
 
 ; A vector containing the objects that each room contains when the game starts. Each index
 ; corresponds to the room as defined in 'rooms'.
