@@ -185,6 +185,18 @@
         ls (aget js/window "localStorage")]
     (.setItem ls "md_state" (.stringify js/JSON
                                         (clj->js game-state)))))
-
 (defn load-game! []
-  (md-pr "Not yet implemented!" (text-speed)))
+    (let [ls (aget js/window "localStorage")
+          md-state (.parse js/JSON 
+                           (.getItem ls "md_state"))]
+      (if (not (nil? md-state))
+        (let [game-state (js->clj md-state)]
+          (set! current-room (game-state :current-room))
+          (set! inventory (game-state :inventory))
+          (set! visited-rooms (game-state :visited-rooms))
+          (set! credits (game-state :credits))
+          (set! milestones (game-state :milestones))
+          (set! game-options (game-state :game-options))
+          (set! room-objects (game-state :room-objects))
+          true)
+        false)))
