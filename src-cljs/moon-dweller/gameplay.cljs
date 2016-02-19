@@ -769,12 +769,10 @@
   (defn cmd-put [verbs]
     (do-x-with-y verbs 'put 'in put-object!)))
 
-; TODO: Remove or implement.
 (defn cmd-save [verbs]
   (s/save-game!)
   (say :raw " * Game saved *"))
 
-; TODO: Remove or implement.
 (defn cmd-load [verbs]
   (if (s/load-game!)
     (say :raw " * Game loaded *")

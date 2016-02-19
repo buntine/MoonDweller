@@ -175,7 +175,16 @@
   (set! visited-rooms (conj visited-rooms room)))
 
 (defn save-game! []
-  (md-pr "Not yet implemented!" (text-speed)))
+  (let [game-state {:current-room current-room
+                    :inventory inventory
+                    :visited-rooms visited-rooms
+                    :credits credits
+                    :milestones milestones
+                    :game-options game-options
+                    :room-objects room-objects}
+        ls (aget js/window "localStorage")]
+    (.setItem ls "md_state" (.stringify js/JSON
+                                        (clj->js game-state)))))
 
 (defn load-game! []
   (md-pr "Not yet implemented!" (text-speed)))
