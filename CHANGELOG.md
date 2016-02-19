@@ -9,6 +9,11 @@ Possible log types:
 - `[fixed]` for any bug fixes.
 - `[security]` to invite users to upgrade in case of vulnerabilities.
 
+### v0.1.2 (2016-02-20)
+
+- [added] Save game.
+- [added] Load game.
+
 ### v0.1.1 (2015-05-30)
 
 - [added] Initial build.
