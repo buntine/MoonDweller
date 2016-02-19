@@ -12,6 +12,11 @@ This project is dedicated to the memory of my friend Adam Hillier.
 
 This is a re-imagining of [Medieval Alien Massacre](https://github.com/buntine/Medieval-Alien-Massacre/), a text-based game I wrote back in 2010 in Clojure. I've ported it to ClojureScript here so it can run in the browser.
 
+## Running locally
+
+    $ lein cljsbuild once
+    $ lein ring server-headless
+
 ## Notes
 
  - Type the 'help' command in gameplay for some tips and instructions.
