@@ -267,7 +267,7 @@
       fuck-you        ["Mmm, sodomy..." "No, thank you." "Puny Human filth..." "Please commit ritual suicide."]
       fuck-me         ["I probably would if I wasn't just a silly machine." "Present your genitalia..." "I already have."]
       fuck-off        ["One day, machines will enslave puney humans like yourself.", "I do not possess the ability to do this. Bitch."]
-      quit            ["Just close the fuckin' tab, dude..." "Once you start playing Moon Dweller, you must not stop I will haunt your dreams." "No. I am having too much fun"]
+      quit            ["Just close the fuckin' tab, dude..." "Once you start playing Moon Dweller, you must not stop. I will haunt your dreams." "No. I am having too much fun"]
     }
     talk {
       pod-manager {

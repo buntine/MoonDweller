@@ -11,6 +11,8 @@ Possible log types:
 
 ### v0.1.2 (2016-02-20)
 
+- [fixed] Some text typos.
+- [changed] Updated dependencies.
 - [added] Save game.
 - [added] Load game.
 
