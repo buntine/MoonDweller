@@ -72,7 +72,7 @@
      candy-bar {
        game    "There is a tasty-looking candy bar here"
        inv     "A candy bar"
-       inspect "It's called 'Space hack bar' and there is a competition running according to the wrapper"
+       inspect "It's called 'Space Hack Bar' and there is a competition running according to the wrapper"
      }
      small-bed {
        game    "There is a small bed here"
@@ -105,7 +105,7 @@
      alien-boy {
        game    "There is a teenage alien boy here!"
        inspect "He is excitedly looking for something..."
-       speak   "He mentions that he's looking for 'lots of Humanoid ass porn'. You nod, knowingly"
+       speak   "He mentions that he's looking for 'lots of Humanoid porn'. You nod, knowingly"
      }
      pod-manager {
        game    "There is an Alien man here"
@@ -118,7 +118,7 @@
      small-robot {
        game    "There is a small robot here"
        inspect "He looks a bit like R2D2, but without the lights. There seems to be a vac-u-lock Dildo sticking out of his forehead."
-       speak   "The robot says 'Hello, I am Nexus model 19, series 4. It seems to me that you are not from around here. Perhaps you are lost? Regardless, I have but one thing to tell you, and that, of course, is the meaning to life. The answer is, simply stated in Human tongue, the persuit of excellence in Skateboarding.'"
+       speak   "The robot says 'Hello, I am Nexus model 19, series 4. It seems to me that you are not from around here. Perhaps you are lost? Regardless, I have but one thing to tell you. I shall reveal to you the meaning to life. The answer is, stated simply in Human tongue, the persuit of excellence in Skateboarding.'"
      }
      homeless-bum {
        game    "There is a dirty, old homeless bum here"
@@ -282,14 +282,14 @@
           a "The man says 'Ahh, you're up! I am Bob Benson, the captain of this grand model T102 repairs vessel. We found you floating out there on the oxygenated stretch of galactic highway 7. Anyway, you look a tad confused, so let me refresh your memory:"
           b "It is the year 2843, you're currently travelling on a highway between two of the moons of Jupiter."
           c "\n** At this point you explain that you are infact from the year 2015 and the last thing you remember is drinking coffee at home and writing some LISP code **\n"
-          d "The captain says 'Oh, yes, it makes sense now. A true LISP hacker and drinker of the finest bean can transcend both space and time. We've seen your type before. You should head over to see the Pod Manager to our southwest in order to get yourself off this ship'"
+          d "The captain says 'Oh, yes, it makes sense now. In 2089, you Humans realised that programming LISP was the most powerful form of Computational Witchcraft. You probably derived the T Combinator and tripped a Wormhole. We've seen your type before. You should head over to see the Pod Manager to our southwest in order to get yourself off this ship'"
           e "Good luck out there, young man..."
         }
       }
       homeless-bum "He mutters 'Hey mystery man! Welcome to Syndal City, perhaps you can spare an old cyborg some whisky?'."
     }
     give {
-      porno-to-boy      "The teenagers eyes explode!! He quickly accepts the porno mag and runs away. He throws a green keycard in your general direction as he leaves the room."
+      porno-to-boy      "The teenagers eyes explode with excitement!! He quickly accepts the porno mag and runs away. He throws a green keycard in your general direction as he leaves the room."
       whisky-to-bum     "The old bum accepts the whisky and says 'Wow!! Thank you, cobba! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
       becherovka-to-bum "The old bum accepts the whisky and says 'Holy fuck, Lagavulin! My favourite! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
       alcohol-to-bum    "He accepts the alcohol, but just grumbles something about Common LISP in response"

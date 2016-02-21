@@ -805,7 +805,7 @@
    'northwest cmd-northwest 'help cmd-help 'take cmd-take 'get cmd-take 'buy cmd-take
    'examine cmd-inspect 'inspect cmd-inspect 'look cmd-look 'quit cmd-quit 'exit cmd-quit
    'suicide cmd-quit 'bed cmd-bed 'sleep cmd-bed 'eat cmd-eat 'fuck cmd-fuck
-   'rape cmd-fuck 'kill cmd-kill 'murder cmd-kill 'talk cmd-talk 'speak cmd-talk
+   'rape cmd-fuck 'kill cmd-kill 'punch cmd-kill 'murder cmd-kill 'talk cmd-talk 'speak cmd-talk
    'inv cmd-inventory 'save cmd-save 'load cmd-load 'give cmd-give 'put cmd-put
    'in cmd-in 'out cmd-out 'enter cmd-in 'leave cmd-out 'up cmd-up 'down cmd-down
    'drink cmd-drink 'cut cmd-cut 'stab cmd-cut 'set cmd-set 'settings cmd-set
