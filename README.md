@@ -20,6 +20,7 @@ This is a re-imagining of [Medieval Alien Massacre](https://github.com/buntine/M
 ## Notes
 
  - Type the 'help' command in gameplay for some tips and instructions.
+ - You can 'save' and 'load' at any time. It uses localStorage and supports only one save slot.
  - Inspired by Dunnet, by Rob Schnell ($ emacs -batch -l dunnet).
 
 ## License
