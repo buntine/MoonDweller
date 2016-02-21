@@ -2,7 +2,7 @@
  (:require [dommy.core :as dom :refer-macros [sel sel1]]))
 
 (defn play-sound [path]
-  "Plays an OGG audio file"
+  "Plays an audio file"
   (let [sound (js/Audio. path)]
     (.play sound)))
 

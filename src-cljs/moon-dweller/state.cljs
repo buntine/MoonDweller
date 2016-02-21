@@ -1,5 +1,6 @@
 (ns moon-dweller.state
-  (:require [moon-dweller.util :as u]
+  (:require clojure.walk
+            [moon-dweller.util :as u]
             [dommy.core :as dom :refer-macros [sel sel1]]))
 
 (declare print-message)
@@ -197,6 +198,6 @@
         (set! visited-rooms (game-state "visited-rooms"))
         (set! credits (game-state "credits"))
         (set! milestones (game-state "milestones"))
-        (set! game-options (game-state "game-options"))
+        (set! game-options (clojure.walk/keywordize-keys (game-state "game-options")))
         (set! room-objects (game-state "room-objects"))
         true))))
