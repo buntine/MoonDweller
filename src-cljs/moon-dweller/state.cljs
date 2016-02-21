@@ -7,7 +7,7 @@
 (def total-weight 12)
 (def ignore-words '(that is the
                     fucking fuckin
-                    damn)) 
+                    damn please)) 
 (def current-room 0)             ; Current room the player is in.
 (def visited-rooms [])           ; Rooms that the player has visited.
 (def inventory [])               ; Players inventory of items.
