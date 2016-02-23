@@ -118,7 +118,7 @@
   (>= credits n))
 
 (defn hit-milestone? [m]
-  (contains? milestones m))
+  (some #(= % m) milestones))
 
 (defn add-milestone! [m]
   "Adds the given milestone to the players list"
@@ -197,7 +197,7 @@
         (set! inventory (game-state "inventory"))
         (set! visited-rooms (game-state "visited-rooms"))
         (set! credits (game-state "credits"))
-        (set! milestones (game-state "milestones"))
+        (set! milestones (map keyword (game-state "milestones")))
         (set! game-options (clojure.walk/keywordize-keys (game-state "game-options")))
         (set! room-objects (game-state "room-objects"))
         true))))
