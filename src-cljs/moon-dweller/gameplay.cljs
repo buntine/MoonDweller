@@ -266,17 +266,17 @@
         (say :path '(give porno-to-boy))
         (s/take-object-from-room! 7)
         (s/drop-object-in-room! 4)),
-   :whisky-to-bum
+   :rum-to-bum
      #(if (not (s/hit-milestone? :alcohol-to-bum))
         (do
-          (say :path '(give whisky-to-bum))
+          (say :path '(give rum-to-bum))
           (s/add-object-to-inventory! 19)
           (s/add-milestone! :alcohol-to-bum))
         (say :path '(give alcohol-to-bum))),
-   :becherovka-to-bum
+   :lagavulin-to-bum
      #(if (not (s/hit-milestone? :alcohol-to-bum))
         (do
-          (say :path '(give becherovka-to-bum))
+          (say :path '(give lagavulin-to-bum))
           (s/add-object-to-inventory! 19)
           (s/add-milestone! :alcohol-to-bum))
         (say :path '(give alcohol-to-bum)))})
@@ -304,14 +304,14 @@
         (say :path '(drink brown-potion a))
         (say :path '(drink brown-potion b) :speed 250)
         true)
-   :salvika-whisky
+   :old-cock-rum
      #(if (s/in-inventory? 17)
-        (do (say :path '(drink whisky success)) true)
-        (do (say :path '(drink whisky fail)) false))
-   :becherovka
+        (do (say :path '(drink rum success)) true)
+        (do (say :path '(drink rum fail)) false))
+   :lagavulin
      #(if (s/in-inventory? 16)
-        (do (say :path '(drink becherovka success)) true)
-        (do (say :path '(drink becherovka fail)) false))})
+        (do (say :path '(drink lagavulin success)) true)
+        (do (say :path '(drink lagavulin fail)) false))})
 
 ; Functions to execute when player pulls particular objects.
 (def pull-fn-for
@@ -331,21 +331,21 @@
  
 ; Functions to execute when player takes particular objects.
 (def take-fn-for
-  {:salvika-whisky
+  {:old-cock-rum
      #(if (s/can-afford? 3)
         (do
           (s/pay-the-man! -3)
           true)
         (do
-          (say :path '(take whisky))
+          (say :path '(take rum))
           (kill-player "Rusty knife to the throat"))),
-    :becherovka
+    :lagavulin
       #(if (s/can-afford? 4)
         (do
           (s/pay-the-man! -4)
           true)
         (do
-          (say :path '(take becherovka))
+          (say :path '(take lagavulin))
           (kill-player "Acid to the brain")))
     :paper
       (fn []
@@ -408,8 +408,8 @@
         :living true}]
       ['homeless-bum 
        {:events {:speak (speech-fn-for :homeless-bum)
-                 :give {16 (give-fn-for :whisky-to-bum)
-                        17 (give-fn-for :becherovka-to-bum)}}
+                 :give {16 (give-fn-for :rum-to-bum)
+                        17 (give-fn-for :lagavulin-to-bum)}}
         :permanent true
         :living true}]
       ['red-potion
@@ -425,13 +425,13 @@
        {:permanent true
         :events {:speak (t/text 'objects 'shop-att-a 'speak)}
         :living true}]
-      ['salvika 
-       {:events {:drink (drink-fn-for :salvika-whisky)
-                 :take (take-fn-for :salvika-whisky)}
+      ['rum 
+       {:events {:drink (drink-fn-for :old-cock-rum)
+                 :take (take-fn-for :old-cock-rum)}
         :weight 2}]
-      ['becherovka
-       {:events {:drink (drink-fn-for :becherovka)
-                 :take (take-fn-for :becherovka)}
+      ['lagavulin
+       {:events {:drink (drink-fn-for :lagavulin)
+                 :take (take-fn-for :lagavulin)}
         :weight 2}]
       ['five-credits
        {:credits 5}]

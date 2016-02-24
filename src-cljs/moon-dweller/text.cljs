@@ -140,16 +140,16 @@
        inv     "Brown potion"
      }
      shop-att-a {
-       game    "There is a shop attendant (a woman) here"
-       inspect "She is wearing an old cooking pot as a hat. What a dumb old bitch."
-       speak   "She says 'Welcome, stranger. We don't get many customers these days. Anyway, the whisky is 3 credits and the Becharovka is 4 credits. Just 'take' what you like.'. She also mentions that theft is punishable by a swift death." 
+       game    "There is a shop attendant (a Human Woman) here"
+       inspect "She is wearing an old cooking pot as a hat. What a fuckin' whacko!"
+       speak   "She says 'Welcome, stranger. We don't get many customers these days. Anyway, the Whisky is 3 credits and the Rum is 4 credits. Just 'take' what you like.'. She also mentions that theft is punishable by a swift death." 
      }
-     salvika {
-       game    "There is a bottle of 'Salvika' whisky here"
+     rum {
+       game    "There is a bottle of 'Old Cock' Rum here"
        inspect "Looks OK. The price tag says 3 credits."
-       speak   "Bottle of Salvika whisky"
+       speak   "Bottle of Old Cock Rum"
      }
-     becherovka {
+     lagavulin {
        game    "There is a bottle of Lagavulin 198 (a Scotch Whisky) here"
        inspect "Looks great. The price tag says 4 credits."
        speak   "Bottle of Lagavulin 198"
@@ -286,12 +286,12 @@
           e "Good luck out there, young man..."
         }
       }
-      homeless-bum "He mutters 'Hey mystery man! Welcome to Syndal City, perhaps you can spare an old cyborg some whisky?'."
+      homeless-bum "He mutters 'Hey mystery man! Welcome to Syndal City, perhaps you can spare an old cyborg some alcohol?'."
     }
     give {
       porno-to-boy      "The teenagers eyes explode with excitement!! He quickly accepts the porno mag and runs away. He throws a green keycard in your general direction as he leaves the room."
-      whisky-to-bum     "The old bum accepts the whisky and says 'Wow!! Thank you, cobba! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
-      becherovka-to-bum "The old bum accepts the whisky and says 'Holy fuck, Lagavulin! My favourite! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
+      rum-to-bum     "The old bum accepts the Rum and says 'Wow!! Thank you, cobba! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
+      lagavulin-to-bum "The old bum accepts the whisky and says 'Holy fuck, Lagavulin! My favourite! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
       alcohol-to-bum    "He accepts the alcohol, but just grumbles something about Common LISP in response"
     }
     eat {
@@ -305,11 +305,11 @@
         a "Hmm... That was clearly a vile of Human shit. And you just drank it!"
         b "YOU DRANK LIQUID SHIT!!!"
       }
-      whisky {
+      rum {
         success "Hiccup!"
         fail    "Maybe you should give that to the dirty old hobo in the alley way?"
       }
-      becherovka {
+      lagavulin {
         success "Wow! That'll put hair on ya' chest!"
         fail    "I think you should give that to the dirty old hobo in the alley way. Don't be so greedy!"
       }
@@ -321,8 +321,8 @@
       spider-web "You swing violently. The web gives way and falls into small peices, allowing you to marvel at it's fractal beauty. You are now free to continue west."
     }
     take {
-      whisky     "You try to take the whisky without paying, but the attendant swiftly thrusts a rusted knife into your jugular."
-      becherovka "You try to take the Lagavulin without paying, but the attendant displays a vile of acid and forcfully pours it into your eyeballs."
+      rum       "You try to take the Rum without paying, but the attendant swiftly thrusts a well-rusted knife into your jugular."
+      lagavulin "You try to take the Lagavulin without paying, but the attendant displays a vile of acid and forcfully pours it into your eyeballs."
       paper      "As you take the paper, you notice that it's actually got a function in ML written on it. There is an obvious mistake in the source code, so you fix it up and then put it in your pocket."
     } 
     secret {
