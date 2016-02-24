@@ -200,7 +200,7 @@
        inspect "It doesn't look particularly special"
        inv     "Stone"
      }
-     wet-floor {
+     weak-floor {
        game    "The floorboards look particularly weak here."
        inspect "It seems like they might break if enough weight is put on top of them!"
      }

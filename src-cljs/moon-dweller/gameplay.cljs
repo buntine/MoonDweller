@@ -460,7 +460,7 @@
        {:weight 2}]
       ['medium-stone
        {:weight 3}]
-      ['wet-floor
+      ['weak-floor
        {:permanent true}]
       ['staircase-a
        {:permanent true}]))))
