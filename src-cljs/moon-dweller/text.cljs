@@ -148,11 +148,13 @@
        game    "There is a bottle of 'Old Cock' Rum here"
        inspect "Looks OK. The price tag says 3 credits."
        speak   "Bottle of Old Cock Rum"
+       inv     "Bottle of 'Old Cock' Rum"
      }
      lagavulin {
        game    "There is a bottle of Lagavulin 198 (a Scotch Whisky) here"
        inspect "Looks great. The price tag says 4 credits."
        speak   "Bottle of Lagavulin 198"
+       inv     "Bottle of 'Lagavulin 198' Whisky"
      }
      five-credits {
        game    "There is 5 credits here!"
@@ -176,7 +178,7 @@
      thin-protester {
        game    "There is a thin man protesting here"
        inspect "He has a sign that says 'More Referential Transparency!'."
-       speak   "He says 'OOP is inherantly imperative! With mutating state, we stand no chance!'."
+       speak   "He yells 'OOP should stand for Over-Engineering Our Programs!'."
      }
      gentle-old-man {
        game    "There is a gentle-looking old man here"
