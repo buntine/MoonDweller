@@ -302,7 +302,7 @@
       green-potion "You drink the potion and instantly start to feel strange. Without warning, your eyes begin to glow green! Luckily, you feel no pain."
       brown-potion
       {
-        a "Hmm... That was clearly a vile of human shit. And you just drank it! DUDE!"
+        a "Hmm... That was clearly a vile of Human shit. And you just drank it!"
         b "YOU DRANK LIQUID SHIT!!!"
       }
       whisky {

@@ -816,7 +816,7 @@
   (if (s/game-options :sound)
     (u/play-sound "/sound/kill.wav"))
   (say :raw (str "You were killed by: " reason))
-  (.setTimeout js/window #(.reload js/location) 6000))
+  (.setTimeout js/window #(.reload js/location) 10000))
 
 (dom/listen! (sel1 "#commands") :submit (fn [e]
   (let [command (dom/value (sel1 :#command))]
