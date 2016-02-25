@@ -497,12 +497,15 @@
      (when (and (> (inventory-weight) 7) (s/room-has-object? 27))
          (say :path '(secret trapdoor))
          (s/take-object-from-room! 27)
-         (s/drop-object-in-room! 28)))]
+         (s/drop-object-in-room! 28)))
+    (darkness-arrow []
+      (say :path '(darkness arrow))
+      (kill-player "Fuckin' Arrow"))]
 
   (defn rc [f room]
     "Returns a function that performs the 'room check' (a named function) identified by f. The function is called only for it's side-effects."
     (fn []
-      (let [fnvec [library-trapdoor]]
+      (let [fnvec [library-trapdoor darkness-arrow]]
         (s/set-current-room! room)
         ((fnvec f))))))
 
@@ -541,7 +544,8 @@
     [nil       nil       25        nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;27
     [nil       nil       nil       25        nil       nil       nil       nil       nil       nil       nil       nil]   ;28
     [nil       25        nil       nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;29
-    [nil       nil       nil       nil       nil       nil       nil       nil       26        nil       nil       nil])) ;30
+    [(rc 1 30) nil       nil       31        nil       nil       nil       nil       26        nil       nil       nil]   ;30
+    [nil       30        nil       nil       nil       nil       nil       nil       nil       nil       nil       nil])) ;31
 
 (defn fn-for-command [cmd]
   "Returns the function for the given command verb, or nil"

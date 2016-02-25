@@ -65,8 +65,10 @@
        "Isle One-B: Functional programming. Dead-end.")
       ("You have arrived in Isle one-A, the logic/misc. programming section. There are some seriously odd books here including 'Forth for Jupiterians' and 'Prolog knows best'."
        "Isle one-A: Logic/Misc programming. Dead-end.")
-      ("You are in a pitch black room. The only thing you can see is a glowing hologram of Bill Hicks. He smiles. The staircase leading upwards is behind you."
-       "Pitch black room with Bill Hicks hologram. Stairs leading upwards.")
+      ("You are in a pitch black room. The only thing you can see is a glowing hologram of Bill Hicks. He smiles. You cannot see how big the room is nor do you know exactly which directions you can move. The staircase leading upwards is behind you."
+       "Pitch black room with Bill Hicks hologram. You cannot see which directions are available. Stairs leading upwards.")
+      ("Dark room."
+       "Dark room.")
     ]
    objects {
      candy-bar {
@@ -329,6 +331,9 @@
     } 
     secret {
       trapdoor "As you walk into this area, the floorboards below you give way because of your weight! The hole reveals a hidden staircase. You can now go down."
+    }
+    darkness {
+      arrow "You cautiously take a step forward. As your foot touches the ground you hear a clicking sound. Suddenly a massive fuckin' arrow shoots at the speed of sound towards you and hits you with enough force to reduce your body to a fine powder roughly the consistency of cornflour."
     }
     bed {
       a       "You get into bed and slowly fall to sleep. You begin dreaming of a cruel medical examination. You wake up in a pool of sweat, feeling violated."
