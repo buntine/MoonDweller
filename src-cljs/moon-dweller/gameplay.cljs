@@ -497,7 +497,8 @@
      (when (> (inventory-weight) 7)
          (say :path '(secret trapdoor))
          (s/take-object-from-room! 27)
-         (s/drop-object-in-room! 28)))]
+         (s/drop-object-in-room! 28)
+       false))]
 
   (defn rc [i room]
     "Returns a function that performs the 'room check' (a named function) identified by i. The function should either return a number indicating the room to move the player to, or a false value, in which case the player will be sent to 'room'"
