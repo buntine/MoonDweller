@@ -57,7 +57,7 @@
        "Isle Zero-B: Emedded Programming. Dead-end.")
       ("You are in Isle one. There are more shelves of books to your east and west. You can also go north or south."
        "Isle one. Shelving to east/west. You can go north/south.")
-      ("You are in Isle Zero-A, the Web Development section. There are at least 799 bad books on JavaScript here. There is also a poster on the wall that displays a graph that seems to depict how PHP became worse as time went by. By 2087 it had implemented (poorly) every language feature known to man (and supposedly some creatures from Proxima Centauri)."
+      ("You are in Isle Zero-A, the Web Development section. There are lots of books here! There is also a poster on the wall depicting the 876 most popular Web Browsers."
        "Isle Zero-A: Web Development. Dead-end.")
       ("You have arrived at the back-end of the library. You cannot go any further in this direction."
        "Back of library. It's a dead-end.")
@@ -183,11 +183,11 @@
      gentle-old-man {
        game    "There is a gentle-looking old man here"
        inspect "He has a tag that says 'Curator' on it. He seems to be slightly aroused..."
-       speak   "He says 'Hello, my strange looking friend. I am the curator of this fine establishment. It has been my life ambition to preserve the teachings of the early Computer Science scholars. Ever since the mid-24th century, the Computer Science field has been in disarray. The art of computer programming has been lost to all but a few. For over 100 years, humans have been working on a function to compute the true name of our God. So far, it's proven nearly impossible. Around here somewhere is my latest attempt. I wrote it in the ancient language ML, but again I failed...'"
+       speak   "He says 'Hello, my strange looking friend. I am the curator of this fine establishment. It has been my life ambition to preserve the teachings of the early Computer Science scholars. Ever since the mid-24th century, the Computer Science field has been in disarray. The art of computer programming has been lost to all but a few. For over 100 years, these few Humans have been working on a function to compute the true name of our God. So far, it's proven nearly impossible. Around here somewhere is my latest attempt. I wrote it in the ancient language ML, but again I failed...'"
      }
      paper-a {
        game    "There is a peice of paper on the ground here."
-       inspect "It seems to have some source code written on there."
+       inspect "It seems to have some source code written on it"
        inv     "Paper with ML code"
      }
      book-a {
