@@ -494,18 +494,17 @@
 
 (letfn
   [(library-trapdoor []
-     (when (> (inventory-weight) 7)
+     (when (and (> (inventory-weight) 7) (s/room-has-object? 27))
          (say :path '(secret trapdoor))
          (s/take-object-from-room! 27)
-         (s/drop-object-in-room! 28)
-       false))]
+         (s/drop-object-in-room! 28)))]
 
-  (defn rc [i room]
-    "Returns a function that performs the 'room check' (a named function) identified by i. The function should either return a number indicating the room to move the player to, or a false value, in which case the player will be sent to 'room'"
+  (defn rc [f room]
+    "Returns a function that performs the 'room check' (a named function) identified by f. The function is called only for it's side-effects."
     (fn []
-      (let [fnvec [library-trapdoor]
-            new-room (or ((fnvec i)) room)]
-        (s/set-current-room! new-room)))))
+      (let [fnvec [library-trapdoor]]
+        (s/set-current-room! room)
+        ((fnvec f))))))
 
 ; Map to specify which rooms the player will enter on the given movement.
 ; A function indicates that something special needs to be done (check conditions, etc).
