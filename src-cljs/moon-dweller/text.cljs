@@ -301,6 +301,9 @@
         bum-knife "The old bum takes one sip of the red potion and instantly his body explodes into a sticky mess. You notice that a small knife fell out of his pocket moments before his body disintegrated. He is dead. And it is all your fault..."
         bum       "The old bum takes a large gulp of the red potion. Instantly his skin melts away leaving only a sticky mess of guts and bones remaining. You have killed the bum. You asshole."
       }
+      brown-potion {
+        bum "The bum gratefully accepts the brown potion. As he takes the lid off and begins to drink, a vile smell of Human shit permeates the air. You realise that you've just given a vile of Human shit to an old homeless man... You sicko!"
+      }
     }
     eat {
       candy "You feel like you just ate crusty skin off Donald Trump's forehead. Although inside the wrapper there was an 'instant win' of 5 credits!"

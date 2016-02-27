@@ -275,6 +275,9 @@
             (s/drop-object-in-room! 19)
           ))
         (s/take-object-from-room! 11)),
+   :brown-potion-to-bum
+     #(do
+        (say :path '(give brown-potion bum))),
    :rum-to-bum
      #(if (not (s/hit-milestone? :alcohol-to-bum))
         (do
@@ -419,7 +422,8 @@
        {:events {:speak (speech-fn-for :homeless-bum)
                  :give {16 (give-fn-for :rum-to-bum)
                         17 (give-fn-for :lagavulin-to-bum)
-                        12 (give-fn-for :red-potion-to-bum)}}
+                        12 (give-fn-for :red-potion-to-bum)
+                        14 (give-fn-for :brown-potion-to-bum)}}
         :permanent true
         :living true}]
       ['red-potion
