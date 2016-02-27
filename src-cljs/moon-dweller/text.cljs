@@ -57,8 +57,8 @@
        "Isle Zero-B: Emedded Programming. Dead-end.")
       ("You are in Isle one. There are more shelves of books to your east and west. You can also go north or south."
        "Isle one. Shelving to east/west. You can go north/south.")
-      ("You are in Isle Zero-A, the Web Development section. There are lots of books here! There is also a poster on the wall depicting the 876 most popular Web Browsers."
-       "Isle Zero-A: Web Development. Dead-end.")
+      ("You are in Isle Zero-A, the Web Development section. There are lots of books here! There is also a poster on the wall depicting the 876 most popular Web Browsers. You can go back east."
+       "Isle Zero-A: Web Development. Dead-end, but you can go east.")
       ("You have arrived at the back-end of the library. You cannot go any further in this direction."
        "Back of library. It's a dead-end.")
       ("You are in Isle one-B, the functional programming section. There are ancient books lying around including gems like 'LISP in Small Peices', 'ML for the Working Programmer' and 'Revised^666 Report on the Algorithmic Language Scheme'."
@@ -293,10 +293,14 @@
       homeless-bum "He mutters 'Hey mystery man! Welcome to Syndal City, perhaps you can spare an old cyborg some alcohol?'."
     }
     give {
-      porno-to-boy      "The teenagers eyes explode with excitement!! He quickly accepts the porno mag and runs away. He throws a green keycard in your general direction as he leaves the room."
-      rum-to-bum     "The old bum accepts the Rum and says 'Wow!! Thank you, cobba! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
+      porno-to-boy     "The teenagers eyes explode with excitement!! He quickly accepts the porno mag and runs away. He throws a green keycard in your general direction as he leaves the room."
+      rum-to-bum       "The old bum accepts the Rum and says 'Wow!! Thank you, cobba! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
       lagavulin-to-bum "The old bum accepts the whisky and says 'Holy fuck, Lagavulin! My favourite! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
-      alcohol-to-bum    "He accepts the alcohol, but just grumbles something about Common LISP in response"
+      alcohol-to-bum   "He accepts the alcohol, but just grumbles something about Common LISP in response"
+      red-potion {
+        bum-knife "The old bum takes one sip of the red potion and instantly his body explodes into a sticky mess. You notice that a small knife fell out of his pocket moments before his body disintegrated. He is dead. And it is all your fault..."
+        bum       "The old bum takes a large gulp of the red potion. Instantly his skin melts away leaving only a sticky mess of guts and bones remaining. You have killed the bum. You asshole."
+      }
     }
     eat {
       candy "You feel like you just ate crusty skin off Donald Trump's forehead. Although inside the wrapper there was an 'instant win' of 5 credits!"

@@ -266,6 +266,15 @@
         (say :path '(give porno-to-boy))
         (s/take-object-from-room! 7)
         (s/drop-object-in-room! 4)),
+   :red-potion-to-bum
+     #(do
+        (if (s/hit-milestone? :alcohol-to-bum)
+          (say :path '(give red-potion bum))
+          (do
+            (say :path '(give red-potion knife-bum))
+            (s/drop-object-in-room! 19)
+          ))
+        (s/take-object-from-room! 11)),
    :rum-to-bum
      #(if (not (s/hit-milestone? :alcohol-to-bum))
         (do
@@ -409,7 +418,8 @@
       ['homeless-bum 
        {:events {:speak (speech-fn-for :homeless-bum)
                  :give {16 (give-fn-for :rum-to-bum)
-                        17 (give-fn-for :lagavulin-to-bum)}}
+                        17 (give-fn-for :lagavulin-to-bum)
+                        12 (give-fn-for :red-potion-to-bum)}}
         :permanent true
         :living true}]
       ['red-potion
