@@ -489,7 +489,11 @@
       ['weak-floor
        {:permanent true}]
       ['staircase-a
-       {:permanent true}]))))
+       {:permanent true}]
+      ['paper-b
+       {:weight 1
+        :events {:take (take-fn-for :paper-b)}}]))))
+
   
 (def directions {'north 0 'east 1 'south 2 'west 3 'northeast 4
                  'southeast 5 'southwest 6 'northwest 7 'up 8 'down 9

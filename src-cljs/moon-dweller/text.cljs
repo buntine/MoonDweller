@@ -190,7 +190,12 @@
      paper-a {
        game    "There is a peice of paper on the ground here. The corner has been ripped off."
        inspect "It seems to have some source code written on it. Some of it is missing, though."
-       inv     "Paper with ML code"
+       inv     "Large peice of paper with ML code"
+     }
+     paper-b {
+       game    "There is a small peice of paper on the ground here. Most of it is missing."
+       inspect "It seems to have some source code written on it. Most of it is missing, though."
+       inv     "Small peice of paper with ML code"
      }
      book-a {
        game    "There is a book on the ground here."
@@ -338,6 +343,7 @@
       paper-a    "As you take the paper, you notice that it's actually got a function in ML written on it. There is an obvious mistake in the source code, so you fix it up and then put it in your pocket."
       paper-b    "As you take the paper, you notice that it's actually some ML code written on it - although most of the code is missing."
       paper-rest "You wonder where the rest of the peice of paper could be..."
+      paper-both "You realise that this must connect to the other peice of paper you have! You put them together and inspect the full source code. It's beautiful."
     } 
     secret {
       trapdoor "As you walk into this area, the floorboards below you give way because of your weight! The hole reveals a hidden staircase. You can now go down."
