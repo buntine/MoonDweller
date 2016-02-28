@@ -363,16 +363,17 @@
         (do
           (say :path '(take lagavulin))
           (kill-player "Acid to the brain")))
-    :paper-a
-      (fn []
-        ; IF HAS OTHER PAPER THEN ADD MILESTONE and say paper-both OTHERWISE SAY paper-rest.
-        (say :path '(take paper-a))
-        true)
-    :paper-b
-      (fn []
-        ; IF HAS OTHER PAPER THEN ADD MILESTONE and say paper-both OTHERWISE SAY paper-rest.
-        (say :path '(take paper-b))
-        true)})
+    :paper
+      (fn [style]
+        (let [[other path] (if (= style :paper-a) [29 '(take paper-a)] [24 '(take paper-b)])]
+          (fn []
+          (say :path path)
+          (if (s/in-inventory? other)
+            (do
+              (s/add-milestone! :full-ml-program)
+              (say :path '(take paper-both)))
+            (say :path '(take paper-rest)))
+          true)))})
 
 (defn make-dets [id details]
   "A helper function to merge in some sane defaults for object details"
@@ -481,7 +482,7 @@
         :events {:speak (t/text 'objects 'gentle-old-man 'speak)}}]
       ['paper-a
        {:weight 1
-        :events {:take (take-fn-for :paper-a)}}]
+        :events {:take ((take-fn-for :paper) 'paper-a)}}]
       ['book-a
        {:weight 2}]
       ['medium-stone
@@ -492,7 +493,7 @@
        {:permanent true}]
       ['paper-b
        {:weight 1
-        :events {:take (take-fn-for :paper-b)}}]))))
+        :events {:take ((take-fn-for :paper) 'paper-b)}}]))))
 
   
 (def directions {'north 0 'east 1 'south 2 'west 3 'northeast 4
