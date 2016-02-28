@@ -363,9 +363,15 @@
         (do
           (say :path '(take lagavulin))
           (kill-player "Acid to the brain")))
-    :paper
+    :paper-a
       (fn []
-        (say :path '(take paper))
+        ; IF HAS OTHER PAPER THEN ADD MILESTONE and say paper-both OTHERWISE SAY paper-rest.
+        (say :path '(take paper-a))
+        true)
+    :paper-b
+      (fn []
+        ; IF HAS OTHER PAPER THEN ADD MILESTONE and say paper-both OTHERWISE SAY paper-rest.
+        (say :path '(take paper-b))
         true)})
 
 (defn make-dets [id details]
@@ -475,7 +481,7 @@
         :events {:speak (t/text 'objects 'gentle-old-man 'speak)}}]
       ['paper-a
        {:weight 1
-        :events {:take (take-fn-for :paper)}}]
+        :events {:take (take-fn-for :paper-a)}}]
       ['book-a
        {:weight 2}]
       ['medium-stone

@@ -188,8 +188,8 @@
        speak   "He says 'Hello, my strange looking friend. I am the curator of this fine establishment. It has been my life ambition to preserve the teachings of the early Computer Science scholars. Ever since the mid-24th century, the Computer Science field has been in disarray. The art of computer programming has been lost to all but a few. For over 100 years, these few Humans have been working on a function to compute the true name of our God. So far, it's proven nearly impossible. Around here somewhere is my latest attempt. I wrote it in the ancient language ML, but again I failed...'"
      }
      paper-a {
-       game    "There is a peice of paper on the ground here."
-       inspect "It seems to have some source code written on it"
+       game    "There is a peice of paper on the ground here. The corner has been ripped off."
+       inspect "It seems to have some source code written on it. Some of it is missing, though."
        inv     "Paper with ML code"
      }
      book-a {
@@ -335,7 +335,9 @@
     take {
       rum       "You try to take the Rum without paying, but the attendant swiftly thrusts a well-rusted knife into your jugular."
       lagavulin "You try to take the Lagavulin without paying, but the attendant displays a vile of acid and forcfully pours it into your eyeballs."
-      paper      "As you take the paper, you notice that it's actually got a function in ML written on it. There is an obvious mistake in the source code, so you fix it up and then put it in your pocket."
+      paper-a    "As you take the paper, you notice that it's actually got a function in ML written on it. There is an obvious mistake in the source code, so you fix it up and then put it in your pocket."
+      paper-b    "As you take the paper, you notice that it's actually some ML code written on it - although most of the code is missing."
+      paper-rest "You wonder where the rest of the peice of paper could be..."
     } 
     secret {
       trapdoor "As you walk into this area, the floorboards below you give way because of your weight! The hole reveals a hidden staircase. You can now go down."
