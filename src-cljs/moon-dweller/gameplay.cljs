@@ -278,6 +278,10 @@
    :brown-potion-to-bum
      #(do
         (say :path '(give brown-potion bum))),
+   :alcohol-to-fat-protester
+     #(do
+        (say :path '(give alcohol-to-fat-protester))
+        (s/pay-the-man! 3)),
    :rum-to-bum
      #(if (not (s/hit-milestone? :alcohol-to-bum))
         (do
@@ -458,7 +462,9 @@
       ['fat-protester
        {:permanent true
         :living true
-        :events {:speak (t/text 'objects 'fat-protester 'speak)}}]
+        :events {:speak (t/text 'objects 'fat-protester 'speak)
+                 :give {16 (give-fn-for :alcohol-to-fat-protester)
+                        17 (give-fn-for :alcohol-to-fat-protester)}}}]
       ['thin-protester
        {:permanent true
         :living true

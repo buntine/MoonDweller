@@ -296,6 +296,7 @@
       porno-to-boy     "The teenagers eyes explode with excitement!! He quickly accepts the porno mag and runs away. He throws a green keycard in your general direction as he leaves the room."
       rum-to-bum       "The old bum accepts the Rum and says 'Wow!! Thank you, cobba! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
       lagavulin-to-bum "The old bum accepts the whisky and says 'Holy fuck, Lagavulin! My favourite! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
+      alcohol-to-fat-protester "He takes the bottle and starts chugging away. Once he's finished the entire bottle he hands you 3 credits and proceeds to vomit violently all over himself."
       alcohol-to-bum   "He accepts the alcohol, but just grumbles something about Common LISP in response"
       red-potion {
         bum-knife "The old bum takes one sip of the red potion and instantly his body explodes into a sticky mess. You notice that a small knife fell out of his pocket moments before his body disintegrated. He is dead. And it is all your fault..."
