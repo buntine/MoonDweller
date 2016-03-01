@@ -261,7 +261,17 @@
 
 ; Functions to execute when player gives a particular X to a Y.
 (def give-fn-for
-  {:porno-to-boy
+  {:paper-to-librarian
+     #(if (s/hit-milestone? :full-ml-program)
+        (if (s/hit-milestone? :paper-to-librarian)
+          (say :path '(give paper-to-librarian full))
+          (do
+            (say :path '(give paper-to-librarian half))
+            (s/add-milestone! :paper-to-librarian)))
+        (do
+          (say :path '(give paper-to-librarian useless))
+          false)),
+   :porno-to-boy
      #(do
         (say :path '(give porno-to-boy))
         (s/take-object-from-room! 7)
@@ -481,10 +491,12 @@
        {:permanent true
         :living true
         :events {:speak (t/text 'objects 'thin-protester 'speak)}}]
-      ['gentle-old-man
+      ['librarian
        {:permanent true
         :living true
-        :events {:speak (t/text 'objects 'gentle-old-man 'speak)}}]
+        :events {:speak (t/text 'objects 'librarian 'speak)
+                 :give {24 (give-fn-for :paper-to-librarian)
+                        29 (give-fn-for :paper-to-librarian)}}}]
       ['paper-a
        {:weight 1
         :events {:take ((take-fn-for :paper) 'paper-a)
