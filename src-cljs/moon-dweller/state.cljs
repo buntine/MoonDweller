@@ -126,6 +126,10 @@
   "Adds the given milestone to the players list"
   (set! milestones (conj milestones m)))
 
+(defn remove-milestone! [m]
+  "Removes the given milestone from the players list"
+  (set! milestones (vec (remove #(= m %) milestones))))
+
 (defn set-current-room! [room]
     (set! current-room room))
 

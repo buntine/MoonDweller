@@ -345,6 +345,11 @@
         (say :path '(cut spider-web))
         (s/take-object-from-room! 20))})
  
+; Functions to execute when player drops particular objects.
+(def drop-fn-for
+  {:paper
+     #(s/remove-milestone! :full-ml-program)})
+
 ; Functions to execute when player takes particular objects.
 (def take-fn-for
   {:old-cock-rum
@@ -482,7 +487,8 @@
         :events {:speak (t/text 'objects 'gentle-old-man 'speak)}}]
       ['paper-a
        {:weight 1
-        :events {:take ((take-fn-for :paper) 'paper-a)}}]
+        :events {:take ((take-fn-for :paper) 'paper-a)
+                 :drop (drop-fn-for :paper)}}]
       ['book-a
        {:weight 2}]
       ['medium-stone
@@ -493,7 +499,8 @@
        {:permanent true}]
       ['paper-b
        {:weight 1
-        :events {:take ((take-fn-for :paper) 'paper-b)}}]))))
+        :events {:take ((take-fn-for :paper) 'paper-b)
+                 :drop (drop-fn-for :paper)}}]))))
 
   
 (def directions {'north 0 'east 1 'south 2 'west 3 'northeast 4
