@@ -3,6 +3,7 @@
             [moon-dweller.text :as t]
             [moon-dweller.state :as s]
             [dommy.core :as dom :refer-macros [sel sel1]])
+  (:require-macros [macros.core :as mc])
   (:use [clojure.string :only (join split)]))
 
 (declare object-details kill-player cmd-verbs cmd-look)
@@ -263,13 +264,12 @@
 (def give-fn-for
   {:paper-to-librarian
      #(if (s/hit-milestone? :full-ml-program)
-        (do
+        (mc/dotrue
           (if (s/hit-milestone? :paper-to-librarian)
             (say :path '(give paper-to-librarian full))
             (do
               (say :path '(give paper-to-librarian half))
-              (s/add-milestone! :paper-to-librarian)))
-          true)
+              (s/add-milestone! :paper-to-librarian))))
         (do
           (say :path '(give paper-to-librarian useless))
           false)),
