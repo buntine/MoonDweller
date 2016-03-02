@@ -274,48 +274,42 @@
           (say :path '(give paper-to-librarian useless))
           false)),
    :porno-to-boy
-     #(do
+     #(mc/dotrue
         (say :path '(give porno-to-boy))
         (s/take-object-from-room! 7)
-        (s/drop-object-in-room! 4)
-        true),
+        (s/drop-object-in-room! 4)),
    :red-potion-to-bum
-     #(do
+     #(mc/dotrue
         (if (s/hit-milestone? :alcohol-to-bum)
           (say :path '(give red-potion bum))
           (do
             (say :path '(give red-potion knife-bum))
             (s/drop-object-in-room! 19)
           ))
-        (s/take-object-from-room! 11)
-        true),
+        (s/take-object-from-room! 11)),
    :brown-potion-to-bum
-     #(do
-        (say :path '(give brown-potion bum))
-        true),
+     #(mc/dotrue
+        (say :path '(give brown-potion bum))),
    :alcohol-to-fat-protester
-     #(do
+     #(mc/dotrue
         (say :path '(give alcohol-to-fat-protester))
-        (s/pay-the-man! 3)
-        true),
-   :rum-to-bum
-     #(do
+        (s/pay-the-man! 3)),
+   rum-to-bum
+     #(mc/dotrue
         (if (not (s/hit-milestone? :alcohol-to-bum))
           (do
             (say :path '(give rum-to-bum))
             (s/add-object-to-inventory! 19)
             (s/add-milestone! :alcohol-to-bum))
-          (say :path '(give alcohol-to-bum)))
-        true),
+          (say :path '(give alcohol-to-bum)))),
    :lagavulin-to-bum
-     #(do
+     #(mc/dotrue
         (if (not (s/hit-milestone? :alcohol-to-bum))
           (do
             (say :path '(give lagavulin-to-bum))
             (s/add-object-to-inventory! 19)
             (s/add-milestone! :alcohol-to-bum))
-          (say :path '(give alcohol-to-bum)))
-        true)})
+          (say :path '(give alcohol-to-bum))))})
 
 ; Functions to execute when player eats particular objects.
 (def eat-fn-for
@@ -331,15 +325,13 @@
         (say :path '(drink red-potion))
         (kill-player "Red potion")),
    :green-potion
-     #(do
+     #(mc/dotrue
         (say :path '(drink green-potion))
-        (s/add-milestone! :drinks-green-potion)
-        true),
+        (s/add-milestone! :drinks-green-potion)),
    :brown-potion
-     #(do
+     #(mc/dotrue
         (say :path '(drink brown-potion a))
-        (say :path '(drink brown-potion b) :speed 250)
-        true)
+        (say :path '(drink brown-potion b) :speed 250)),
    :old-cock-rum
      #(if (s/in-inventory? 17)
         (do (say :path '(drink rum success)) true)
@@ -374,17 +366,15 @@
 (def take-fn-for
   {:old-cock-rum
      #(if (s/can-afford? 3)
-        (do
-          (s/pay-the-man! -3)
-          true)
+        (mc/dotrue
+          (s/pay-the-man! -3))
         (do
           (say :path '(take rum))
           (kill-player "Rusty knife to the throat"))),
     :lagavulin
       #(if (s/can-afford? 4)
-        (do
-          (s/pay-the-man! -4)
-          true)
+        (mc/dotrue
+          (s/pay-the-man! -4))
         (do
           (say :path '(take lagavulin))
           (kill-player "Acid to the brain")))
@@ -392,13 +382,13 @@
       (fn [style]
         (let [[other path] (if (= style :paper-a) [29 '(take paper-a)] [24 '(take paper-b)])]
           (fn []
-          (say :path path)
-          (if (s/in-inventory? other)
-            (do
-              (s/add-milestone! :full-ml-program)
-              (say :path '(take paper-both)))
-            (say :path '(take paper-rest)))
-          true)))})
+            (say :path path)
+            (if (s/in-inventory? other)
+              (do
+                (s/add-milestone! :full-ml-program)
+                (say :path '(take paper-both)))
+              (say :path '(take paper-rest)))
+            true)))})
 
 (defn make-dets [id details]
   "A helper function to merge in some sane defaults for object details"
