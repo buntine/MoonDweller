@@ -294,7 +294,7 @@
      #(mc/dotrue
         (say :path '(give alcohol-to-fat-protester))
         (s/pay-the-man! 3)),
-   rum-to-bum
+   :rum-to-bum
      #(mc/dotrue
         (if (not (s/hit-milestone? :alcohol-to-bum))
           (do
