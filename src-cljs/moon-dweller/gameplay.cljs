@@ -148,8 +148,8 @@
        (if (or (nil? events) (not (events objx)))
          (say :raw err-msg)
          (do
-           ((events objx))
-           (s/remove-object-from-inventory! objx)))))]
+           (if ((events objx))
+             (s/remove-object-from-inventory! objx))))))]
 
   (defn give-object! [objx objy]
     (give-or-put :give objx objy (t/text 'commands 'give-error)))
@@ -263,11 +263,13 @@
 (def give-fn-for
   {:paper-to-librarian
      #(if (s/hit-milestone? :full-ml-program)
-        (if (s/hit-milestone? :paper-to-librarian)
-          (say :path '(give paper-to-librarian full))
-          (do
-            (say :path '(give paper-to-librarian half))
-            (s/add-milestone! :paper-to-librarian)))
+        (do
+          (if (s/hit-milestone? :paper-to-librarian)
+            (say :path '(give paper-to-librarian full))
+            (do
+              (say :path '(give paper-to-librarian half))
+              (s/add-milestone! :paper-to-librarian)))
+          true)
         (do
           (say :path '(give paper-to-librarian useless))
           false)),
@@ -275,7 +277,8 @@
      #(do
         (say :path '(give porno-to-boy))
         (s/take-object-from-room! 7)
-        (s/drop-object-in-room! 4)),
+        (s/drop-object-in-room! 4)
+        true),
    :red-potion-to-bum
      #(do
         (if (s/hit-milestone? :alcohol-to-bum)
@@ -284,28 +287,35 @@
             (say :path '(give red-potion knife-bum))
             (s/drop-object-in-room! 19)
           ))
-        (s/take-object-from-room! 11)),
+        (s/take-object-from-room! 11)
+        true),
    :brown-potion-to-bum
      #(do
-        (say :path '(give brown-potion bum))),
+        (say :path '(give brown-potion bum))
+        true),
    :alcohol-to-fat-protester
      #(do
         (say :path '(give alcohol-to-fat-protester))
-        (s/pay-the-man! 3)),
+        (s/pay-the-man! 3)
+        true),
    :rum-to-bum
-     #(if (not (s/hit-milestone? :alcohol-to-bum))
-        (do
-          (say :path '(give rum-to-bum))
-          (s/add-object-to-inventory! 19)
-          (s/add-milestone! :alcohol-to-bum))
-        (say :path '(give alcohol-to-bum))),
+     #(do
+        (if (not (s/hit-milestone? :alcohol-to-bum))
+          (do
+            (say :path '(give rum-to-bum))
+            (s/add-object-to-inventory! 19)
+            (s/add-milestone! :alcohol-to-bum))
+          (say :path '(give alcohol-to-bum)))
+        true),
    :lagavulin-to-bum
-     #(if (not (s/hit-milestone? :alcohol-to-bum))
-        (do
-          (say :path '(give lagavulin-to-bum))
-          (s/add-object-to-inventory! 19)
-          (s/add-milestone! :alcohol-to-bum))
-        (say :path '(give alcohol-to-bum)))})
+     #(do
+        (if (not (s/hit-milestone? :alcohol-to-bum))
+          (do
+            (say :path '(give lagavulin-to-bum))
+            (s/add-object-to-inventory! 19)
+            (s/add-milestone! :alcohol-to-bum))
+          (say :path '(give alcohol-to-bum)))
+        true)})
 
 ; Functions to execute when player eats particular objects.
 (def eat-fn-for
