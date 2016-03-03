@@ -267,7 +267,7 @@
         (mc/dotrue
           (if (s/hit-milestone? :paper-to-librarian)
             (doseq [x '(a b c d)]
-              (say :path (concat '(give paper-to-librarian full) [x]))))
+              (say :path (concat '(give paper-to-librarian full) [x])))
  
             (do
               (say :path '(give paper-to-librarian half))
