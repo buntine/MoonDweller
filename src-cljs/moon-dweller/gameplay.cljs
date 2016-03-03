@@ -266,9 +266,11 @@
      #(if (s/hit-milestone? :full-ml-program)
         (mc/dotrue
           (if (s/hit-milestone? :paper-to-librarian)
-            (doseq [x '(a b c d)]
-              (say :path (concat '(give paper-to-librarian full) [x])))
- 
+            (do
+              (doseq [x '(a b c d)]
+                (say :path (concat '(give paper-to-librarian full) [x])))
+              (s/take-object-from-room! 23)
+              (s/drop-object-in-room! 28 30))
             (do
               (say :path '(give paper-to-librarian half))
               (s/add-milestone! :paper-to-librarian))))
@@ -420,7 +422,7 @@
        {:permanent true}]
       ['large-lever
        {:events {:pull (pull-fn-for :control-lever)}
-         :permanent true}]
+        :permanent true}]
       ['porno-mag
        {:weight 2}]
       ['green-keycard
@@ -514,8 +516,10 @@
       ['paper-b
        {:weight 1
         :events {:take ((take-fn-for :paper) 'paper-b)
-                 :drop (drop-fn-for :paper)}}]))))
-
+                 :drop (drop-fn-for :paper)}}]
+      ['bent-book
+       {:events {:pull (pull-fn-for :bent-book)}
+        :permanent true}]))))
   
 (def directions {'north 0 'east 1 'south 2 'west 3 'northeast 4
                  'southeast 5 'southwest 6 'northwest 7 'up 8 'down 9
