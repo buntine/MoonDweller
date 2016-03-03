@@ -87,7 +87,7 @@
      porno-mag {
        game    "There is a porno mag here"
        inv     "A porno mag"
-       inspect "The title is 'Humaniod Whores, vol #995, June 2843'"
+       inspect "The title is 'Humanoid Babes, vol #195, June 2843'"
      }
      green-keycard {
        game    "There is a green keycard here"
