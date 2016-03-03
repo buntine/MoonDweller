@@ -311,9 +311,14 @@
         bum "The bum gratefully accepts the brown potion. As he takes the lid off and begins to drink, a vile smell of Human shit permeates the air. You realise that you've just given a vile of Human shit to an old homeless man... You sicko!"
       }
       paper-to-librarian {
-        useless "I can't use this..."
-        half "Do you have the other half, also?"
-        full "You are the chosen one..."
+        useless "He says 'Oh that is my latest attempt at computing the true name of our God. The other half should be here somewhere...'"
+        half "He says 'Thankyou! Do you have the other half, also?'"
+        full {
+          a "The old man becomes weak at the knees and urinates himself. There, in awe, and surrounded by a dank pool of piss, the old man falls to his knees and begins to pray."
+          b "You ask 'What are you doing?'"
+          c "He says 'All will be explained soon! You may well be the one we have been searching for! For now, you must follow me to Isle One-B. Please come quickly'."
+          d "And with that, the old man waddles off into the library isles. You look around the room in confusion."
+        }
       }
     }
     eat {

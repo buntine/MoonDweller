@@ -266,7 +266,9 @@
      #(if (s/hit-milestone? :full-ml-program)
         (mc/dotrue
           (if (s/hit-milestone? :paper-to-librarian)
-            (say :path '(give paper-to-librarian full))
+            (doseq [x '(a b c d)]
+              (say :path (concat '(give paper-to-librarian full) [x]))))
+ 
             (do
               (say :path '(give paper-to-librarian half))
               (s/add-milestone! :paper-to-librarian))))
