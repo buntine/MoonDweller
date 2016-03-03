@@ -215,6 +215,10 @@
        game    "There is a staircase leading downwards here."
        inspect "It is a hidden passage of some sort. Might be dangerous..."
      }
+     bent-book {
+       game    "There is an artificial-looking book in the shelf here that is bent outwards. It does not fit in."
+       inspect "It's labelled 'Very uninteresting book. Not worth reading, I promise'."
+     }
    }
    inventory {
       have    "You currently have:"

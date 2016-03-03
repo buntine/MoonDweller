@@ -68,8 +68,8 @@
      'green #{4 13} 'red #{5 12} 'brown 14 'silver 6 'bum 11 'potion #{12 13 14}
      'credits 18 'attendant 15 'woman 15 'rum 16 'whisky 17 'lagavulin 17
      'web 20 'knife 19 'small #{19 29} 'thin 22 'skinny 22 'fat 21 'paper #{24 29}
-     'book #{25 30} 'bent 30 'stone 26 'rock 26 'floorboard 27 'floorboards 27
-     'floor 27 'staircase 28 'stairs 28})
+     'book #{25 30} 'bent 30 'artificial 30 'stone 26 'rock 26 'floorboard 27
+     'floorboards 27 'floor 27 'staircase 28 'stairs 28})
 
 (defn md-pr [text i]
   (set! messages (conj messages [text i])))
