@@ -69,8 +69,8 @@
        "Pitch black room with Bill Hicks portrait. You can't see shit. Stairs leading upwards.")
       ("You are still in the dark, although you can now start to make out some basics details of the room you are in."
        "Dark, unniteresting room.")
-     ("Room of pedos"
-      "Room of pedos")
+      ("Room of pedos"
+       "Room of pedos")
     ]
    objects {
      candy-bar {

@@ -150,8 +150,7 @@
 
 (letfn
   [(alter-room! [room changed]
-     "Physically alters the contents of the given. Must be called from within
-      a dosync form"
+     "Physically alters the contents of the given"
      (set! room-objects 
            (assoc-in room-objects [room] changed)))]
 
