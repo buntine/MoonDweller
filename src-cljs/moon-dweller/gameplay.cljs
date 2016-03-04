@@ -355,8 +355,8 @@
         (s/set-current-room! 0)),
    :bent-book
      #(do 
-        (set :path '(pull bent-book))
-        (s/set-current-room 32))})
+        (say :path '(pull bent-book))
+        (s/set-current-room! 32))})
 
 ; Functions to execute when player cuts particular objects.
 (def cut-fn-for
