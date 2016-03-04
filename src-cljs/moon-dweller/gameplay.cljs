@@ -352,7 +352,11 @@
         (say :path '(pull control-lever))
         (s/take-object-from-room! 2)
         (s/drop-object-in-room! 3)
-        (s/set-current-room! 0))})
+        (s/set-current-room! 0)),
+   :bent-book
+     #(do 
+        (set :path '(pull bent-book))
+        (s/set-current-room 32))})
 
 ; Functions to execute when player cuts particular objects.
 (def cut-fn-for
@@ -601,7 +605,8 @@
     [nil       nil       nil       25        nil       nil       nil       nil       nil       nil       nil       nil]   ;28
     [nil       25        nil       nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;29
     [(rc 1 30) nil       nil       31        nil       nil       nil       nil       26        nil       nil       nil]   ;30
-    [nil       30        nil       nil       nil       nil       nil       nil       nil       nil       nil       nil])) ;31
+    [nil       30        nil       nil       nil       nil       nil       nil       nil       nil       nil       nil]   ;31
+    [nil       nil       nil       nil       nil       nil       nil       nil       nil       nil       nil       nil])) ;32
 
 (defn fn-for-command [cmd]
   "Returns the function for the given command verb, or nil"
