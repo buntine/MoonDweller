@@ -26,3 +26,5 @@ This is a re-imagining of [Medieval Alien Massacre](https://github.com/buntine/M
 ## License
 
 Copyright © 2015 Andrew Buntine (http://bunts.io)
+
+Distributed under the GNU GPL. See the LICENSE file.
