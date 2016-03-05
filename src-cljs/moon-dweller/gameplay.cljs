@@ -164,7 +164,10 @@
 
 (defn read-object [objnum]
   "Reads an object in the current room or inventory"
-  (say :raw "Not implemented yet"))
+  (let [read-text ((object-details objnum) :read)]
+    (if read-text
+      (say :raw read-text)
+      (say :path '(commands cant-read)))))
 
 (defn fuck-object
   ([objnum]
@@ -411,7 +414,7 @@
     (let [defaults {:weight 0, :edible false, :permanent false,
                     :living false, :events {}, :credits nil,
                     :game (text-path 'game), :inv (text-path 'inv),
-                    :inspect (text-path 'inspect)}]
+                    :read (text-path 'read), :inspect (text-path 'inspect)}]
       (merge defaults details))))
 
 ; The details of all objects. Each object is assigned one or more numbers in s/object-identifiers,

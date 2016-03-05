@@ -224,7 +224,7 @@
      bent-book {
        game    "There is an artificial-looking book in the shelf here that is bent outwards. It does not fit in."
        inspect "It's labelled 'Very uninteresting book. Not worth reading, I promise'."
-       read    "You try to read the book but it's pretty obvious that it's not really a book at all. The label says 'Very uninteresting book. Nor worth reading, I promise'."
+       read    "You try to read the book but it's pretty obvious that it's not really a book at all. The label says 'Very uninteresting book. Not worth reading, I promise'."
      }
    }
    inventory {
@@ -282,6 +282,7 @@
       cannot-talk     ["That item does not possess the ability to talk." "That doesn't even make sense" "Stop trying to fuck with me..."]
       speechless      "Sorry, they have nothing to say at the moment."
       cannot-pull     "Nothing much seemed to happen."
+      cant-read       "There is nothing worth reading on that."
       do-error        "You don't have that item."
       do-unknown      "I don't see him/her/it here."
       fuck-you        ["Mmm, sodomy..." "No, thank you." "Puny Human filth..." "Please commit ritual suicide."]
