@@ -90,6 +90,7 @@
        game    "There is a porno mag here"
        inv     "A porno mag"
        inspect "The title is 'Humanoid Babes, vol #195, June 2843'"
+       read    "There is a really interesting article on World War 6 on page 49"
      }
      green-keycard {
        game    "There is a green keycard here"
@@ -193,16 +194,19 @@
        game    "There is a peice of paper on the ground here. The corner has been ripped off."
        inspect "It seems to have some source code written on it. Some of it is missing, though."
        inv     "Large peice of paper with ML code"
+       read    "The first line is 'fun god : string ='"
      }
      paper-b {
        game    "There is a small peice of paper on the ground here. Most of it is missing."
        inspect "It seems to have some source code written on it. Most of it is missing, though."
        inv     "Small peice of paper with ML code"
+       read    "It's hard to read because there is not much code on the paper. You can make out a few characters like |, * and ()"
      }
      book-a {
        game    "There is a book on the ground here."
        inspect "It is a dirty old copy of 'Programming Language Pragmatics' by Michael L. Scott."
        inv     "Book: Programming Language Pragmatics"
+       read    "Page 59: 'Starting from a Regular Expression we have now constructed an equivalent DFA'. Your pants moisten."
      }
      medium-stone {
        game    "There is a medium sized stone here."
@@ -220,6 +224,7 @@
      bent-book {
        game    "There is an artificial-looking book in the shelf here that is bent outwards. It does not fit in."
        inspect "It's labelled 'Very uninteresting book. Not worth reading, I promise'."
+       read    "You try to read the book but it's pretty obvious that it's not really a book at all. The label says 'Very uninteresting book. Nor worth reading, I promise'."
      }
    }
    inventory {
