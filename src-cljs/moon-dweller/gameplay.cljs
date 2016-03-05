@@ -49,7 +49,7 @@
   ([verbs realised context]
    "Attempts to realise a single object given a sequence of verbs and
     a context. This allows for the same term to identify multiple objects.
-    Context must be either :room or :inventory"
+    Context must be either :room, :inventory or :all"
    (if (empty? verbs)
      (highest-val (frequencies realised))
      (recur (rest verbs)
@@ -161,6 +161,10 @@
 (defn inspect-object [objnum]
   "Inspects an object in the current room"
   (say :raw (describe-object objnum :inspect)))
+
+(defn read-object [objnum]
+  "Reads an object in the current room or inventory"
+  (say :raw "Not implemented yet"))
 
 (defn fuck-object
   ([objnum]
@@ -784,6 +788,12 @@
               talk-to-object
               :room))
 
+  (defn cmd-read [verbs]
+    (interact verbs
+              'read
+              read-object
+              :all))
+
   (defn cmd-pull [verbs]
     (interact verbs
               'pull
@@ -874,7 +884,7 @@
    'inv cmd-inventory 'save cmd-save 'load cmd-load 'give cmd-give 'put cmd-put
    'in cmd-in 'out cmd-out 'enter cmd-in 'leave cmd-out 'up cmd-up 'down cmd-down
    'drink cmd-drink 'cut cmd-cut 'stab cmd-cut 'set cmd-set 'settings cmd-set
-   'commands cmd-commands})
+   'read cmd-read 'commands cmd-commands})
 
 (defn kill-player [reason]
   "Kills the player and ends the game"
