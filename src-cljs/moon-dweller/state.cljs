@@ -15,6 +15,7 @@
 (def credits 0)                  ; Players credits (aka $$$).
 (def milestones #{})             ; Players milestones. Used to track and manipulate story.
 (def messages [])                ; Message queue.
+(def alive true)                 ; Alive or not?
 (def game-options {:retro true   ; Print to stdout with tiny pauses between characters.
                    :sound true}) ; Play sound during gameplay.
 
@@ -133,6 +134,12 @@
 
 (defn set-current-room! [room]
     (set! current-room room))
+
+(defn kill! []
+  (set! alive false))
+
+(defn alive? []
+  alive)
 
 (defn objects-in-room ([] (objects-in-room current-room))
   ([room]
