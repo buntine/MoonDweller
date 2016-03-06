@@ -639,12 +639,14 @@
 (defn parse-input [s]
   "Parses the user input"
   (if (not (empty? s))
-    (let [cmd (command->seq s)
-          orig-room s/current-room]
-      (if (false? (verb-parse cmd))
-        (say :path '(parsing unknown)))
-        (if (not (= orig-room s/current-room))
-          (describe-room)))))
+    (if (not (s/alive?))
+      (say :path '(parsing dead))
+      (let [cmd (command->seq s)
+            orig-room s/current-room]
+        (if (false? (verb-parse cmd))
+          (say :path '(parsing unknown)))
+          (if (not (= orig-room s/current-room))
+            (describe-room))))))
 
 (letfn
   [(move-room [dir]

@@ -237,6 +237,7 @@
      unknown-dir "I don't understand that direction."
      wrong-dir   "You can't go that way."
      no-dir      "You need to supply a direction!"
+     dead        ["You are dead." "C'mon, you are dead." "Dude. I already killed you."]
    }
    options {
      error   "Sorry, I only understand 'on' or 'off'."
