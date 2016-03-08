@@ -11,3 +11,4 @@ pom.xml.asc
 *.swp
 *.swo
 *.swn
+resources/public/js/main.js

@@ -212,5 +212,5 @@
         (set! credits (game-state "credits"))
         (set! milestones (map keyword (game-state "milestones")))
         (set! game-options (clojure.walk/keywordize-keys (game-state "game-options")))
-        (set! room-objects (game-state "room-objects"))
+        (set! room-objects (u/extend-vec (game-state "room-objects") room-objects))
         true))))

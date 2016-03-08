@@ -25,6 +25,12 @@
       (dom/remove-attr! :disabled)
       (.focus)))
 
+(defn extend-vec [a b]
+  "Merges two vecs by appending remainder of b onto a. Assumes a is larger or equal to a.
+   e.g: (extend-vecs [1,2,3], [1,2,9,4]) -> [1,2,3,4]"
+  (let [overflow (subvec b (count a))]
+    (vec (concat a overflow))))
+
 (defn direction? [verb] 
   (boolean 
     (some #{verb} 
