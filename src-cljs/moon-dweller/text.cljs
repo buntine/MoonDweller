@@ -69,8 +69,8 @@
        "Pitch black room with Bill Hicks portrait. You can't see shit. Stairs leading upwards.")
       ("You are still in the dark, although you can now start to make out some basics details of the room you are in."
        "Dark, unniteresting room.")
-      ("Room of pedos"
-       "Room of pedos")
+      ("Magic room. NOTE: Congratulations! You have reached the end of my progress. If you are reading this and want to play more of this game, please contact me (Andrew Buntine, info@bunts.io) and motivate me to keep working on this game. Thanks!"
+       "Magic room. NOTE: Congratulations! You have reached the end of my progress. If you are reading this and want to play more of this game, please contact me (Andrew Buntine, info@bunts.io) and motivate me to keep working on this game. Thanks!")
     ]
    objects {
      candy-bar {
