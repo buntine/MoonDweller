@@ -18,7 +18,8 @@
         :output-to "resources/public/js/main.js"
         :optimizations :advanced
         :pretty-print false}}]}
-  :ring {:handler moon-dweller.handler/app}
+  :ring {:handler moon-dweller.handler/app
+         :port 3010}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring-mock "0.1.5"]]}})
