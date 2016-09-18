@@ -6,7 +6,7 @@ MOON DWELLER: A text-based adventure in your web browser.
 
 This project is dedicated to the memory of my friend Adam Hillier.
 
-[PLAY IT NOW](http://moon-dweller-staging.elasticbeanstalk.com/).
+[PLAY IT NOW AT moondweller.io](http://moondweller.io/).
 
 ## History
 
