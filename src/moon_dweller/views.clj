@@ -2,7 +2,7 @@
   (:use [hiccup core page]))
 
 (defn core []
-  (html
+  (html5 {:lang "en"}
     [:html
       [:head 
         [:title "Moon Dweller"]
