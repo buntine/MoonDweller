@@ -87,8 +87,8 @@
        inspect "There is no label, but it seems to have some wear from usage"
      }
      porno-mag {
-       game    "There is a porno mag here"
-       inv     "A porno mag"
+       game    "There is a nudey mag here"
+       inv     "A nudey mag"
        inspect "The title is 'Humanoid Babes, vol #195, June 2843'"
        read    "There is a really interesting article on World War 6 on page 49"
      }
@@ -110,7 +110,7 @@
      alien-boy {
        game    "There is a teenage alien boy here!"
        inspect "He is excitedly looking for something..."
-       speak   "He mentions that he's looking for 'lots of Humanoid porn'. You nod, knowingly"
+       speak   "He mentions that he's looking for 'lots of Humanoid pornography'. You nod, knowingly"
      }
      pod-manager {
        game    "There is an Alien man here"
@@ -311,7 +311,7 @@
       homeless-bum "He mutters 'Hey mystery man! Welcome to Syndal City, perhaps you can spare an old cyborg some alcohol?'."
     }
     give {
-      porno-to-boy     "The teenagers eyes explode with excitement!! He quickly accepts the porno mag and runs away. He throws a green keycard in your general direction as he leaves the room."
+      porno-to-boy     "The teenagers eyes explode with excitement!! He quickly accepts the nudey mag and runs away. He throws a green keycard in your general direction as he leaves the room."
       rum-to-bum       "The old bum accepts the Rum and says 'Wow!! Thank you, cobba! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
       lagavulin-to-bum "The old bum accepts the whisky and says 'Holy fuck, Lagavulin! My favourite! Please, take this small knife in return, It may help to 'cut' things that lay in your path'. You, in turn, take the knife."
       alcohol-to-fat-protester "He takes the bottle and starts chugging away. Once he's finished the entire bottle he hands you 3 credits and proceeds to vomit violently all over himself."
