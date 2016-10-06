@@ -284,6 +284,8 @@
       speechless      "Sorry, they have nothing to say at the moment."
       cannot-pull     "Nothing much seemed to happen."
       cant-read       "There is nothing worth reading on that."
+      read-error      "Ok... Read what exactly?"
+      read-unknown    "I don't see that here. Be more specific!"
       do-error        "You don't have that item."
       do-unknown      "I don't see him/her/it here."
       fuck-you        ["Mmm, sodomy..." "No, thank you." "Puny Human filth..." "Please commit ritual suicide."]
