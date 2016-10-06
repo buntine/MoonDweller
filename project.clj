@@ -1,4 +1,4 @@
-(defproject moon-dweller "0.1.2"
+(defproject moon-dweller "0.1.3"
   :description "Moon Dweller: An out-of-this-world text adventure."
   :url "http://moondweller.io/"
   :min-lein-version "2.1.2"
