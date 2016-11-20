@@ -66,7 +66,7 @@
 ; a command is entered. Each index corresponds to the same index in room-objects.
 (def object-identifiers
     {'candy 0 'bar 0 'bed 1 'lever 2 'mag 3 'magazine 3 'porno 3 'porn 3 'nudey 3 'boy 7
-     'teenager 7 'keycard #{4 5 6} 'key #{4 5 6} 'man #{8 9 21 22 23} 'robot 10
+     'alien 7 'teenager 7 'keycard #{4 5 6} 'key #{4 5 6} 'man #{8 9 21 22 23} 'robot 10
      'green #{4 13} 'red #{5 12} 'brown 14 'silver 6 'bum 11 'potion #{12 13 14}
      'credits 18 'attendant 15 'woman 15 'rum 16 'whisky 17 'lagavulin 17
      'web 20 'knife 19 'small #{19 29} 'thin 22 'skinny 22 'fat 21 'paper #{24 29}
