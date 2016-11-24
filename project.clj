@@ -1,5 +1,5 @@
-(defproject moon-dweller "0.1.3"
-  :description "Moon Dweller: An out-of-this-world text adventure."
+(defproject moon-dweller "0.1.4"
+  :description "Moon Dweller: An out of this world text-based adventure."
   :url "http://moondweller.io/"
   :min-lein-version "2.1.2"
   :dependencies [[org.clojure/clojure "1.7.0-beta3"]
