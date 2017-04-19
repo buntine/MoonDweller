@@ -683,6 +683,9 @@
   (defn cmd-up [verbs] (move-room 'up))
   (defn cmd-down [verbs] (move-room 'down)))
 
+(defn cmd-turn [verbs]
+  (say :path '(parsing use-dirs)))
+
 (defn cmd-commands [verbs]
   "Prints a line-delimited list of the commands the system understands."
   (let [commands (sort (map str (keys cmd-verbs)))]
@@ -889,7 +892,7 @@
    'inv cmd-inventory 'save cmd-save 'load cmd-load 'give cmd-give 'put cmd-put
    'in cmd-in 'out cmd-out 'enter cmd-in 'leave cmd-out 'up cmd-up 'down cmd-down
    'drink cmd-drink 'cut cmd-cut 'stab cmd-cut 'set cmd-set 'settings cmd-set
-   'read cmd-read 'commands cmd-commands})
+   'read cmd-read 'commands cmd-commands 'left cmd-turn 'right cmd-turn})
 
 (defn kill-player [reason]
   "Kills the player and ends the game"
